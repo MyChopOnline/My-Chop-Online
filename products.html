@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Produits - ShopMali</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .whatsapp-btn {
+            background-color: #25D366;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+        .country-flag {
+            width: 20px;
+            height: 15px;
+            display: inline-block;
+            background-image: url('https://flagcdn.com/w20/ml.png');
+            background-size: cover;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .filter-btn.active {
+            background-color: hsl(236, 78%, 57%);
+            color: white;
+        }
+        .auth-modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .auth-content {
+            animation: modalopen 0.5s;
+        }
+        @keyframes modalopen {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        .active2{
+            background-color: #25D366;
+        }
+        /* From Uiverse.io by ke1221 */ 
+button {
+  color: #090909;
+  padding: 0.7em 1.7em;
+  font-size: 18px;
+  border-radius: 0.5em;
+  background: #0059ff;
+  cursor: pointer;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+
+button:active {
+  color: #666;
+  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+}
+
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="country-flag"></span>
+                <a href="index.html" class="text-xl font-bold text-green-700 ml-2">Shop<span class="text-orange-500">Mali</span></a>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="gd.html" class="text-gray-700 hover:text-green-600">Accueil</a>
+                <a href="products.html" class="text-green-600 font-medium">Produits</a>
+                <a href="index.html#about" class="text-gray-700 hover:text-green-600">À propos</a>
+                <a href="index.html#contact" class="text-gray-700 hover:text-green-600">Contact</a>
+            </nav>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white py-2 px-4 shadow-lg" id="mobile-menu">
+            <a href="gd.html" class="block py-2 text-gray-700 hover:text-green-600">Accueil</a>
+            <a href="products.html" class="block py-2 text-green-600 font-medium">Produits</a>
+            <a href="index.html#about" class="block py-2 text-gray-700 hover:text-green-600">À propos</a>
+            <a href="index.html#contact" class="block py-2 text-gray-700 hover:text-green-600">Contact</a>
+            <div class="border-t mt-2 pt-2">
+            </div>
+        </div>
+    </header>
+
+    <!-- Products Hero -->
+    <section class="bg-gradient-to-r from-blue-600 to-green-800 py-12 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Nos Produits</h1>
+            <p class="text-xl max-w-2xl mx-auto">Découvrez notre sélection exclusive de produits disponibles pour commande via WhatsApp</p>
+        </div>
+    </section>
+
+    <!-- Products Filter -->
+    <section class="py-6  shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-semibold text-gray-800">Filtrer par catégorie</h2>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button class="filter-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100 active" data-category="all">
+                        Tous les produits
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100" data-category="electronics">
+                        Électronique
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100" data-category="fashion">
+                        Mode
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100" data-category="home">
+                        Maison
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100" data-category="beauty">
+                        Beauté
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="products-grid">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="data:image/jpeg;base64,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" " 
+                             alt="Montre connectée" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">Nouveau</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">PUBG 60 UC</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Vous êtes sur le point de faire le plein de PUBG UC. Avec des UC, vous pouvez obtenir des récompenses Elite Royale Pass et Elite Plus Royale Pass, acheter des skins cool, débloquer de nouveaux personnages et bien plus encore.<br> <span class="text-xs text-red-500 ">Livraison gratuite</span></p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">1,000 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20la%20montre%20connectée" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+                
+                <!-- Product 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxITEhUSEhIVFRUXFRcWFRgWFRUWFhUVFhYXFhUWFRcZHSghGBolHRUVIjEhJSotLi4uGB8zODMsNygtLisBCgoKDg0OGhAQGi0lICYtLS0vLS8tLS8tLy0tLS0uLS0tLS0tLS4tLS0tLS8tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALQAtAMBEQACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAEAQIDBQYAB//EAD4QAAIBAgUCBAQDBAoBBQAAAAECEQADBAUSITFBUQYTImEycYGRFKGxI0JS8AcVM0NicoLB0eGSFiQ0svL/xAAaAQACAwEBAAAAAAAAAAAAAAABAgADBAUG/8QAQBEAAQMCBAIGBwYEBQUAAAAAAQACEQMEEiExQRNRBWFxgaGxFCIyQpHB8CRSYrLR4RUjcqIGQ2OC0jM1RJLC/9oADAMBAAIRAxEAPwDOC3Xol51LpqKLoqQol01FE4CiolAqKJxWgikK1EV0UZSpIppUTWooLrYBoFEJ5tdZqKQmRUQT0FBFFW1oKKe3FKQnBR1k9qqIVrSjrGGnc1S4q0BLdQTsKgRKguCmCUoW4BThKUyigq97NWyqiEO1uikKbpooJdNRRdpoKJdNRFOBqQpKQioouioojsvyS/e3RPT/ABMdK/ME7kfIGq31mM1KsZRe/wBkK9y/wBduje+i/wCVGcfclapN80aD68Vc2xcdXfXgnYz+jq6glcRbJ7MjJ+YLfpRbfNJzafr4KOsnAZOH18VmsflF+x/apC/xAhk5j4lmPkYPtWplVj/ZKyvpvZ7Q/RBU6ROSoiikNBRSqaBRCOw9UuVrVY+eFFU4ZV2KELextMGIF6EuYomnDUhcoS5poSymlzRhSVKl1etQtKmIJrW1NTNDJRPhNpo4kMKHK0yrXCpCMpCKiCSKiiWKkKSrTDYYW4Z7bM53C6CQnYv01ex4+fGOtce60rZRoTDnBa/w21y+4DKy29iZQ7x3J/nisDit7VtsRjbNlDuIUcLExVQaXK0uDVk858Qq5gEbcCevQ/KN/qKvayAs73yqIZpoE7zPG2kr7zuf95qw5pAYWfzGxacNcsjQRu9v93T1a32jqvvtERW6hWJ9Vyw16Qb6zVWKta1mUy0EU7VQhEKfDXjMVW4J2lT3HPelAVhKgamSpKiiSakILqiiiANWKuU9SRQhSU43DQhHEmHeihKbpqIJdFFRPsYYuYECIksQqiTAkn9OeaR72sEuTNa55hoTcZ+HT0vimQ9dHlI3BEKbhLDfqFBEVz69ySPVyH12LoULaDLhJ+u2frmg0x+Btt/a3nnq161yN5abHWs2IHcfXetWF/3T5fJavKbuHvnUlxtgdUG1dC6Qz6SQyx9R0+ZqNJ2IQcI9oIvEZ4zWtCkADdwRqIWJOpGEqO5496OEawgJ0VDjLyXfVbhf8SzBER8M6Y+QHHNMBhQ1QeJu3Uts7G3oSASWgnUek7fQmmBziEsKq/rBkuTBBB3BEbGDBB42NEHNBwyVi6iZX4SJX5Hp9NxXUpvxNlct7cLoUlu3NElQBTeSKXEmwp9tAKUohKRURTCKKCbFFBcLdRRO0UEVGoq1UhKUoIpPLooLglRROCVFF2mgiqzPvxLoLdj0qDJYNBZiJ6dgevb32411cA1sHJduytopcQiZWKv4Q6gGYknaRwegg8mqzTYc1qFRwRFvKRpllMn/ADcCqiGbJsb1tPA9k2sI1wAAXLjlY5KCLfHPKXvv7mrqbQAVmrPLnDqRQvFSYPOnSpRIXSZ9JCyZPUk/SmASpDiJLDSEK+rUIBbUduOeCZ53PaiEpVfdzq7atrctNobzItuQCuoB1JAPJ2I46HtQdGiIG6osdjXc6nidIn6y31+L7RRCUq28PYsOhSZKGY7Bv+x+dbrV0yFhuWwQVcqYrUs0oixbLb0hyTjNSi0aWUYXeXRUXGzUlSEzy6KEJtFRLFBFQqtXLOnRQRXRUUXAVEEsVFEwgkwNydh7ntURVbnWeYfDlrRZrjfCy2+BqA1SxIjjbed+BXBfSZxXPJkkrv0qz+E1oEAALPXvFVpTKYGwSPhNz1sB3+EQfkelHLkhDuZUH/q0n4sDhiCI2RlMdd/rUy+79fBT1vvfXxVlgvHNshLV20bSKQBpMqq77BdIIAk9+amMRpCnDOsytGl5bia1dLgO+q3pgA8AhfhO4B2HyG4BBQKgeA7r09I4n90AyDA2M+360ZQhZnHH1m0QPQyshIXQ6MPiLNAXkyehmTtNQHWVDtCGxdo21YRxz7kc7ipnCGSIyDMrt+Lavo9RYQzKonSp1cLyqf8AnQpuOoTVGg5HRbDDQwVt4IBEggwRIkHiuy12JocFxnNLXFp2R9to2FKQmBRmHXvVZVjUR5KUkuTQE84ZaGIo4QhsVg44qxj5SOZCEOGNWYkmFGWsOI4qouMqwAKqC1rWNIaiiSookoKJCaiidYaGBmIMg9j0MdY5pKgJaQNU7CA4E6LzbDZQXDs8grcZIPJZQC5YwP4ljvJ7VxqbQZB+ua7lWodR8fJT5dlam4AY/wBvrHSngKskq7vZCG0qOp6L+Y333n7VC4BTCSpB4esO3rZyY20jkgekHsPv/wAJjKbCFYWfDdm2VZZtsOSjMrxAkagRyPpvxQhGcoS5qptWWv8AKDUdZEB3Etp9yTyKhMIgSsd4fzBWIS5uxMyW0ENOolXggAxuGUjfaDvQaclHNIWhxGBsnYXm0nYHylI68Mtw7x3A+Q6WCUhVZ4UwcYnUgnSD6yVSBB9QUnV9Vnkd6ekAXgRPkkrEimc481tlk7nc+9dbCBouPKkWgQmBRluTVZCsBRVpOtIU4Ss5qYQjKidyeaYNCUuKIwuHBNV1HJ2BEBF71VmrMlSNa2HyrcCsZCge3TSkIUZFFBNIqKJIoKJIqKKi8Y5sLS2rYUEw1xoIlmJKjVHZUQfbbauXcGKroHJda1E0myeayVrOb6iVVAOhKKzf+UVlLnLWGBW2GzzEvb8xmUQxToNwoJifZ/zqovIKtbSDhklt+J7ysNQQx1//ACOfY7URVhKaPMwi/wD1SCfVbY9IDCI68/zvRFUFTgkaKLxH4qbEWVw6WyloFCdRBJZAAYA4mByT9KDnAjJRrIMlZa/hbegMurzGcqEG4IEQY5kkkfSg2TnsnMRG62OWeDGUJru3JgMVViqA7EgHnjqIpKdYueG7Srn27WMJ3jxV7gsOlsabaKo7ARJ7nufc16RlFrMmj67V5V9V1TNxRoNWQq5UiUCiEdhx71S5XNRocAVUrZQ7mnCQlMVZppSou2Y4qoiVYHQnaPalRVWmI4+VasKoxJdQNCFJTXsLHvRkoQEG6U6rKSKCkpNNFRZvxXkD3it21uy7Mmw1DupO2oduu3UQcF3RcTjb3/quhZ12gcN3cs7iLMLBBUjkMNJXbVDA8bb71zXZ6LrBpiVbYPLrn4BCFDM1wuFcbKjEiVjkmFO8/EPahUpfyxUO8o0biHupDUR+6ocwuMCUMSD8I5+wqkBO9x0JQy4sjnn7/pVgYUhqJxutcIWQCeATH3+1MGNCQ1HFXnhfDB3VojsJJ6xMHiqrioYwhaLWiJxleqraBX/TFZ2GCDyWl4kEc1nEFezK8QJGqnWgongGlKYBT4eZqt0KxqMmq4TyuiihKlQUCpKmtA0joTAlSGaXJNJVEE2rYFmKTiihK4vQhTEkmjCEpsVFJSxQRTGFFBNImJExxO8fLtVbqLHZlo+CcVXtEBx+KzfjLE6CreaVJRlIHxMCyEwfcqvBB25AmsF9EgbQul0fOFxGsrKYTL7t+RYtM4HMQN/8Tnaesc78daxtpvf7IWt72M9owq9EYkqdiNiONxzWdziNVpYwFG2MINiBvVWNXhi1Phqxo9U7TtPQdhS1qmI6Ky3p4GxK9B8P5ficShuqNFgf3jT699/LHLAfxbD57wKLMZ6lK9UUxlmfrX9PJD57gVtXAEnSRO/8UnV9NxXqbWqXsz1C8nc0wyploUPYtTVriqQEToAquVZEKS2tKUQpRapZRhd5VGUpCmS1QJUhG4ZKperWIogVVmrJCydtdhXUWCU426iiabVFBILdRRLooKLitRFRkUVEnl0EElzCqw9Shu0gH260C0HUJmuLdClu4X9kyWwo9DBRp9IOkxK9R7VXWH8t0cirqJmo0nmF5vneCVdGItKfIvb2m50kD12X7MhDD3UA77156o0ESvQ0nkGFDg3J2rMRC2NMrRZXYa9ctYcEjzLioSIkIT62E9QgY/Sla3EQFaX4Wl3JelZd4vbDgtdM4YAnRHqs2gSAFjnSoG3XpXRLWgZbLjguOqO8R4AXQtyx+1tuA1l0IZTq5WZ6iCO8Ac1rs64aYJWS8olwkCVm2UrIIII2IIgg9iDxXU1zXL0RuCwhYEnb51S5wGiuY0nVTfhTQlHCkS0amSEFThKVFOUUEqmtUhRBUxWkTrOpa2HyrpLGn+XURXaKiiTy6iCQrUUUFxaiiSzh2YwoJPWOnz7Ur3tYJcYTsY55hokoX8UxbTbVHYyFLE6ZHxMSNgg6sZHYGRPOrXuzF1qHRwaJq68uXb+iHy7J7uKvsRcZLVuVu3llWuXI/s7CNK21G0wsgcksTGLiPxTiMrYWsDYwiOULQZjlwCFUkbEaixZoOzGT1iR7TVjnuf7RWdrGs9kLC5dYWxjHwLqGs37AY2idiy6oKHfS4CkhhuCoqp8YoVzSYxIHF5WLN17WrUEI0t/EjKHtk+5Vln3msLwQSF0qcOaHBH+Ghc/G4MW93/EWz0jQDN6Z6eWLk+00GZOBRq/9MhWP9K+aqVuC1/fOQoWdrCQXeB0JC/Qmtrsmwua3Vab+iTA3LGGWxdV21kXClxX8tCTMCV9JCwdv3polsAEaoYiSeS2vivLC4/EWFnEWUYopjReA38tgeu3pbkEnuRQDnAQDl3qFrSZIVcjC7ZS9aEo4BKtLaXIAgapZJ7Ajce5oseWO1Qexr25hCpYhS4+ENB7rPE+3v7V0adYP9Xdc99Esz2UyXk7US1yAcFLoU0kkIEBRXbA6UwcVWWrrdkHrFQuIQDZTtAoSpCoVXb6V0wspS6aiCXRUUTStRRRPQUWh8MeHVvDzbshA0BeNfuTMxO23bmufd3ZpnAzXnyW+0tBUGN+nLmrDxDh7C+gwlvTughF4M7A6iYnYAzuem3Kc5zjJK7DGhghohZC1leHu3PNsh7drSFS2B5cKCTqcxqDE7wCBxImTUEndM4xkr63otqLdtAAohVQekD9I5604CrcSdUHft3GJICqO25PP61YFUVgP6RstceXibZ/a2WAkDfTIg7DeGj6MaWoJzCNM7I3+qr2OTD3rVpg2nyroIYaIJdZJ6AswnqClZq4yDlstXxLT2q7ueHlwNpn0ks66WvMQA0mfw+HX4iGiWeIKjmJmUmQZOvkhXq4xA080X4F8MC7ea/eGoKVLtyt24J02knfy02Yjgkgby1WkqheoFj3pYUlRMSN4+29MgvO/FOSYjDlsRhbr+XJZrYgosmdL2+qSeV0nb60wDXHNKZaMlYYbFLdBew3puLBDDUFk7m4CVKgMrDVBG2xNCSO0IkAjqKusb4XA3sNH+FjI+jc/ea1U706PHesr7MasKpLytbOlwVPv/t3Fa2w8S1ZXS0w5RNfFMGKsuCltXKVzVAnl6XCiq0Wth8q3ByyELvLo4kEhSpKihdaKKNyPKTfuheEG7n27D3PH3qi5rikyd9lfb0DVfG263GIxdqzAMIAFA9lDBYA/1iuASSZK7wECAvObmYXMRcefSLtzSvGplJ31ECdgUU9IY/RG5lXOAaF6FYwtpUCaRA9uferVRK58FZPSPrFSSgk/AWP4QfepiKmSjvZThXVkeyjK6lWkSSGEHmoSVMl5y+IxOV4prKXFuIQjgmCLlsllUXVkabo0kahAaAepAkAhHRPwmHxeZ4gm5cCqseY3piyhn02lky7QYnYRLFoCsNNFNV6bg7NuzbW1aGlEGlRJO3ck7knkk7kmagUU4uCogl8wUFFDfsW7isjqGDAqZA4O1FReV4q3cwoe0B5nlXmQB1DALcDOh29XKtw0bjamJzRABC9NyPGm7Ys3Zk3LaMQdvUVBI6xvPekIUUee4Pzl08Fd143bt8o/UVfbVeG6dlTcUeI2N1jFXvXXJXGRNpJ4pCU4ClNo0mIJoKYtvYbdBVocqSE1rVNiSkJrWqOJCEiYEtQNYBM1hK0uSYHRaYqYLGCe0D0n7k1y7qqXuAXWsqYawnmst4wz0izcW4At63A9riOwXUvyJH2rGSug0ZqoykC1bsYy5eUK9tCilLhIa4DcHwySYnp+6K4h6XqCu+iyjJaSPaA0MTmFeaMsDi6J6lpEzklHuLetFUti6zQ+kW2TzFcnsU9UiarPTtQODTQMkwBizkGCNOeSUWoInF4Jn9eDUq+dblvh9NwzNk3wRtx5alp9o52o/wAcrQTwNPxDnh5c8v2Q9Hb97wUT+JVAtsbyRdJFsm3fGqCgJ+DZZuIJMD1CnHTFclw4Hs6+uOvq6j8EOA3L1vBTXM9069d+yugOW+PZbTrbuE7fuuwG08g0g6bqujDQJmPe5iRtuM1PR2/e8FnvE+FtX7vmtirSPoez/Zu2o2L3lkciSLl4LHUsIqM6bqn/AMc7e8NCJHu8hPmj6OPv+Cn8NsuCS+pxdtzruvcbQ6+WMOttLixLfDrB538zaaI6arOjDbnOI9Ye9Me7vBR9HbHt+Ctl8RqQCL9uDMStwcXVsEEESCLjopHdhRPTFcEg2+n4hyLuXIEoejt+/wCCcufjab1oSWEQ8+i8MO3zi4Qu3U9t6B6arbUDt73NuLlyzU9Gb9/wTb3iNFKK15Jd2RQEumXS4LLAkCFi4wWTtJFFvTNdwJFDQAn1xoRI2zyEom2EgYvBWeEzci75TEToVwRMQxYdeD6K6HR196ZTL8OGDETOwPIc1TWomk6CVQ+ObZW490CA9pTPQtbdV299LtW/ZI3VFeEc8JwNgKV80vctpIJA03WUMwHIC7xIkgDrRhB2RWxu3bdpFW5cgtsJI8xz10jkk9Y/IUvYosxmuHi4SFIB3HH14/neupbvlkHZci6ZhqSN0NbBFXGCs4JCU3GpYChcVq7uVqw1DY6Rt0mK5zLgtyK6b7cOzCo71ggwRW5rwRK57mEFOsYcdppX1Y3RazqUwgbAb1UXSnAhWQustsBVB/iU8kESY+tY3mXErrUhDAF5p/ShjLTpp0ut5SvxCJUsA0H94fLsKRytZqgRfZsHl1tdQ2w+6rqgfh3UlugG/J9q8a6qG3Vy4x7+8e8IXX4BdRpgdXkpkOlMZhkR7gazhbCwr+tBaTDsfMC6Z9W8cCTECkNbE6jWcQPWe45jIyXDKZ2y56JX0eGHMz2TcGpDWz5dxHXK7uFmG9LW7gt2yNQgvGqNtweCKapcSHCQQaod3ESeuNJ5HkUtK2Jzz0PgUJjXuPZwBBvt5Vsh9VrSZ8/BHynXy1IUaDBEEi3Mncm6nVYypXaQ0ScvWn3amYMnPT46aKt9E4WkSe7rCXGarhxim3d/ssxU/srn99jbT29BIhyUViNM8VKVYM4LpbrS3G1MzOeUHLOFW6k6XCDvt1oa/hLy27BPmG7hnxtyVSRcuLjMO9vzF0nUraS8Dc6ZHFMbqk6o7DGF4pjXQFjpg7Rp1TBRFB8DI7+aXMsDe8/MHVXKXbWYaVCn42ayPTtvrVFjvpMU1C8pGjQa6AQ6nOe0OP8AaSZ5TmjwXS7sPhCXNrF25Zt3LSXJbFY1oKMD5b3/AMXblCAyy2GtxP8AGe4o29zSZVcyoRAZT3ETGA55gwHHTko6g4tBHM7d/wAk/N7N6MAyq4dLKNe0qSGa5ibD3UbsdTFv9B7Utvc0jx2kiC4hsnkx2E+Ed4TG3cCzsBPxCtc5zQi9Ya3ZbXqKylstbKXbtvzluR8JmLobbe2d9zOG2BdSeHOERuYMhpiOY92Ota6tINc2Bvyy1z/VGNi7v4tSiIzeQkh3Kf3l3ghWrt/4fJNB5/F8gsPSLQ2oAeSTxlnqX7CILd21cXzluW7iwR+wdlYMCVdZXlSfyru5rG0Ku8B2LpW35Ihoabhg+UC7TpU7ajuZPE040Su1XoOVNhrJJRjfvn47hJcz7vH5ChmUqdmjFjq07d+x7Vot3QYWW7bLQeSryBWwLmpCtFBbFG9I+Q/SuOu5os/ml8KWZvnWgPgQFjwS7NU6Zu7KjjSA6hl5mGEj615qt0+WVXs4U4SROLkY5LsUui8bA4OAnqUGI8QeWzKwGsREH4tXw/I9K6VpftuLc1iIAmR2fsqKlrwqmHUpcT4idHRSstcMJBPMqIMjY+r6way0OlxVpVKhZGATE6+C01LNzHNaTqqrxXgmxa+WWVXBDBtBbTpYT1HI2+tZB/iAETw/7v2V46NcD7QWcwnhPFAraTMHAEKFCOAoUekAeZx7CY2rM/pK0Mvdbg94z/tV3o9y0QKuigwWBxL4U4oY+6qrqGiWk6GKkBtXsdo4Faqj7Nt0LfgAzGeXvAHSOvms4dcGkanEOU5diflmUYm/qufjrilDp9RZzDANt6hpHpH29qa/faWjxT4AMidh1cjKlv6RXBIqRHNSY3I8Sj2l/HXGN1yq+p1ggSTGoz6Qdvb3qmhc2b2VHGgBhE7Gc4jTmneLpjmt4kyUWPDOKJKjNLpMcabgP382RWX+IWgzNqPiP+KuNvcD/N+viqfLstxeJDuuY3bYR9BB1PJCI5PxD+MCI6VuvXWlq8M4AMgHYbnqPJU2/pFVpPEIgwp8XlGMseXqzG7cF24ttN2TS7EBZ9RkGR9qS1q2VfiE0AMLS7YyBrsFK/pNMt9eZMI5vD+Lkg5nc+guGeh4f5VlF9ZxPoo+I/4q30a5H+b4fug8JlmLuPdRcddm0YPqczMwZ1enjj/itdatY0mU38AQ8Ttl4Z/XNUsFy4uHE9nxQy2cR+FOL/G3PLHI1tMatEzxM9K0ObZC79FNETzgcpVTalwaPG4mX0Fa4djgwL96613UANRLEqYLKpnpsd+JkVb0deUXudSp08EZ9u3xQuqFUAPe6duxWXicebdsYdmCu5uFSJYaVtkvI2g8DnrSU+mRUt31uGfVjKeZjIx8lDZObUaydZ8ENgMmhQpxGpF/dWbatvwxk7VSenoIxUj8f2Ct/hzoMOCuMpzAXLQuWWCoZ0iCTsYJIBAHB78VffdMG2rGkKcxGcxqJyyKpt7I1qYfihRZpinS/aZ70huu4CjVpMqSVA9QEiDzV3RvSRu8RwYS2N51nqHJJc2vC9UmZV9hmneZFeka+WgrzrqeFxCNULS4imwBXWs7b7QP0rBlC3mZ1WZ8VXPQ3yNQFOWg6LI4rB3Xt5eAk+VcsNcG0qq2mUkyekj7141takKty7F7QfHe6V3WscKdIRpHkoszUPmKWgw+KzIHTR+1Kn30ifrW+0dw+iqjiNcXjDfNZa3rXQHWPDNP8a4MGwrL+5eGqDuupG47HUErP0K/7QWu95p74I+Uq+/zYCNiqvP3jJUIc6tNqDJ1CbsGTzMTRohp6Uc2Mpd5Iku9EB7Erycms7vqItSZMmb2+/PE1LfCelnMgRLvyqViRZg9nmrLJbSrlF72W/P/AJMRP6fSpd/93YOtnkFVSP2N3en+FFLWsQQCQTpUDqwtyeevqWn6dI9IZ2fNGwnhu+tlSZF4eGGxWF12zbZmPMeoaCrcc/GPuK6F9d0rizqmk7FEc+Y59iy0Gvp1W4grXNMBi1zC5ewNvUws20cxbICMdUQ7DebfSePeuZavtH2Tad06PWJGu3YDzWm4dVFYuYNoQ+Q5ZcbL8bbVJe411bfHqP4e2kbn+IEU/SVamL6i6cgGz/7E+Waa2xGg8c5UudWCoyqxADC7YOmQGiyLZuE7xAAafpVNo9v2qofuuHV60x8SrK3+UORHgpvwqnOQNv8A4O8bb+awiDxwNqQujown/U/+U0/ah/T80T4esgYrMekPbA+RtsV/UfyKrvXTb2/YfzKUcqlUn6yVLlducic/4Xj5eb/zXQuTHTQ7W/lWakfsBHb5q/zXJjiMuZUksbCug6l0UOg+pEfI1yre59HvA4/eIPYcitlYcSjHUh8+tRmmXrPIxc9dvJkVZaH7Bcf7PzIVXfz6Z7fJQZBaX+ssxBJM/ho9wbTTxx2o3tSLK3P9fmEaIJrVO7yVLkWD/F5McMh/aKZYddXmebbUTsNS7A8TPY1vvbj0TpUVag9U79WHCT3HUcu0LNRZxLUsbqNu+UtjMMVibltr4RfK0hQqMg3dGOsMT6hoG20b11bSwpWocaRJxEHMg6aRAHNY6td1UjFtK9Gy26ukddo2242rtUzLRC5FduF5lF+aKsgqmQrC3cO0npWQ6ZLS3XNZ/wAVODbYDsargrUHDQLIXs7u20wR1fG1kXZCy6+UxYcbSQp23rxjbWmatw0D2cUdUOyXfBdw6RnWPJR3M1tnMhe0QFs6yBA1Poe3JJjfS6iT0UVpaHjow0ydXx3ZHzHiqTS+2f7Z+SlzzMteFv22gE3PMVhJhEui5BBA30oQem/Jqqwhl3TeOzvIjzKtuaLuC7F2oHxFjVfJbdsDf9iNXcG7INXW7T/F3nrd5Kp1Iiza6eSa76cqtW1IJi0Qe4FwE7ddv1FPbCeliY0LvIqVmRZAnq80bluYgZZdtEblb5kf5j+W/wCVC6af4s134meQSUmTZOPU5TeFMf5dq8u39pqWf3SbYn/6D86HTzPtDD+H5n9U3RzSabjP1Cq8rzTE3MThL2LuBhbZtMKiRrT1fCBMlE57e9b7yxpW1nWFEe1G5Oh/crJRqOrVmYvrJX+B8RL/AFheIY6Gs2iFBE6kLSeezD7j2rg1bY+hMMZ4neQXUYCa7m9QVHlOb3bWExjI26Pfa2SAdE2w+w4PqYnea3XtFrrqg0jItZPXnHkFRbAijUI2Lv1Ts5zViuXXjGsX7JLQCdNy2fNXjhvbsO1U2lL1rinthdl1g5fBW1xApv5keKKOaL/Wou6RH4UJE9fNff8AOpgd/DC3/Un+1KW/bAPw/NS5JnAXEY5mG1y4kEdAtsIBHbcf99K7ukeBQA2B8XFPRbL6k848FUYDHacma1EkrcHyBuCuhcNLumQetv5VkpNno8u7fNXWCz02Fs29Z9QAiFP92SAQf8pG0THPQ8mpQNVz3Db9Y+fWug1oaGg7/oq/Mc1DZlgXIHpGJnt6rRH261poMc2yrj+jzVdRg49Mdvki/D2YWxmWYMQvqGG0z0IskH8yKqvGONjQEff/ADKU6Z49QA8vJZjwzjL2ESzjVQmzpCXd1i6gJVl0zOpSCQYG4iYJn0nSNO3vC61LhxBmNcjr8CNerrC5NE1KX82Dh57LW561hcUrqTF5G1gEQHQiGUE+ktqM+6zyTWToKu99F1N/uxHYZy7oy+HJW3tIMeCN1a5di5BgRBg+7fvEdxIFeltjmQuRdtyBR4vVrhYslc+Zt9K561FZ3xCToaO1RFpzWCv5nYKWUueZqtKmwtsQHRdMggievO1eZfYXTatVzAIcTuNCZXpKN5bcKm15MtA2OoCgw2aYc4hrtwXdIRFtwJYkSWLLJ242M8A7U1SxuvRm0mRMknwiFBd2/HNQzEABC4PNLKWsSl7zJum7ogFiFuLAWZ9MH6VZXsa3FpOpgQ0NnbMHxS07ynw6jXzJJjsKZj8+sNl9vDKW80C1qGkgAowLerr1oUbKs2/dXdGGXRnz0UqXNJ1q2kNcvBOvZ9aODtYZC3moEVtiFAUyekHcCP8Aqmt7Kq2+dWMYZJHfkkr3FN1qKQ1y8Cp8vzfDJZFq+zhpfUBbJDBmLCWHOxA+lLeWV0+5NWkBtBnSAmtrq2ZQ4dWd0mV5vh081X1aGcMnoJ2AjeDseP5kUbyyuqvDcMyBBz60La7taeNpORMj4LsdmtqbZwqv6CS27iY06Y1zH747EHcVfRt7upSqMuTrEadfKOr5Kl9a1ZUY6htrr81PZzbChzdm75nGyQWAIOmSSBJAFYXdH3hYKcDD26da2+nWYfjBM9n6oBs5t28NiLNyVuXdbIACR67arE9NxWy4sqjrmk9uYaGg9xKzW91TbQqNdqSSO8KHGeIbNy1g7aFy1p7LOsQALdshgp679aroWFVtaq50Q4OAPaclZWu6RpUwNWlpPcrdM5wfmeYWfVvB8oyAek/U/c771lPR97g4cCO3LtV/p1ljxzn2KHLs7so983QyrcYMkLqMCRDidttJ68ntvouuja7qdIU4JaIO3XkqKF/Qa+oX5Bxkb7QoM1x+HfDm1YDzIKeiFX1STLEnieN96a0s7oXIq1o685JyjZCvc2xtzSpA9WWWvWos6zZHFjydZa0yM4IK/AD6RI3Jkjt85qWlhVa6oKgEEEDvT3F5SIZg2IKbmub4c4mw9q4+lBd1HyzqQskLsw9Rnc80lC0rtoVGPaJMRnrBz0OSerc0HVWOachM5cwp8JnuDUs51vcMEkWyGdlEKP4Rtt+dVPsbpwDBAb25CdetMLq2aS/Mk9XJCYLH2Rhrdi6zektqTS5DBnZiQy9gV7cHcc1rr21f0l1amNYgyNgBustGrRNAU6h02g8+paDC4m1iLi+R6iEfWWGnUxK6dPXYKZ+fzqzoy1rUQ/iRnECZ0mfNVX1enUc3h7T8lo8qwj2zBt6QSSSSo26FeTyvB7kz0rs0JxSFzLgjBBVppHet2Nc4tWgIFczEugaQKrMfZDU4SYQFncVldsGWhd+W2B9p70rir6bd1TZzkdwepbSso3lCQ4/0nn7/AEpFaIVDi21qWKzpG4CmR0JP87VJRwqiv2l+IHaN+p+lVkqwNSoqrf34K/mRqH8+9Rh9ZRzfVV4t+2HbT2Xkb/vVnvdW966fREQ/u+apbfiF184PBILC0dI5mI25iQfoaQ0AcJHemF85vEDhzw5bzEeRTznFz8PaeQHa5pY6V4luBEdBQ4TcZGwCf0l5oMduTByHWiMJmba76s2oIBpOlZ4POkCelI5ghpG6upVnY6jXZ4dMhPgENl2b3Ga0GaQwfWCiqNp06DAnpwTT1KTQHRtCot7l73MBOszkBpyy/VTW82criTIlCRbOldhLR034HNA0myzrVjbh5bWP3SYyHWiGzJvw3mfv+WDOkH1d4iKTAOJh2lWmsfRuJvHLdOyzHFlDMzMSoJBthVBP8J0ifuaFRsGB5praoXNDnScuUDuyEqxynBI6lzpWXYySAPiMRXVpew3sHkvNVx/Of/U7zKfi7dgbL62IMhRwO5/OnlVws7ew2m6+sCBb1R7EMdvoBVTzmrGCQjcZlgt3iukABUYewKj/AHBpnjC6ElM4mApDctDqpPaJP/FI6q1uqsbScUVl+OvuSuFtt1lraFogEx6BzxyetKKhdoE5ohvtFa3K0xSoTiAw406juTHq9MmBuO1bLIuLji6o+a5/SIaGNLOufkp2xJrpYQuTiK1zXtq44C7RKoszz1bVzQ0KIJlvTq2kaGPp+ckUrqkGE7KGJsoR8zFwStwWyTBS+oNtxydJ6yOqkj2NCVbEKnxOLuWI0FsMONDftsI2391dAm102MD2qKarOZpjyWNxI3+KAAVJ25GxB3qElEAIrwlliYi8oe2WtQ2qAQsxsGPY9v8Aug1M4wEN4oyR8Hi7RtjUjsq2dXqEj0lLk+zAT235FV1aQeC3mo1+SBzO0y3DoQleBHtPM/OjXpF8QtFldsoBwcDnGirreEI/u3PqLbxsSIMVWaNQ7jkr23lu33Xak7anvSHBHQtvRchTqB9Mzv8A80eFUxF2Wfal9Kt+GGQ6AZGkpyYdlLHRcJfk+np8vnQNCoYGWXamZe0GlxhxJ19n5IVtNopIuekHSDojfnjnmo6lUM6Z9qWnc27S0jF6sx7O6bbxVv1qA/7Q7/DyZ4+9A0qhI0y7U4urcB4h3ra6eCMQHyzb03CpEfubDiBFQ278WLLxUF9QFPhw6NPdT7TMgC6bhAEAEJtHuAKDrZ7jOXimp9IUmCBiI68PyVnl1sskAgEkwCYPJgT8zWxghoC5NVwdUc7mSfirSzZbZBu5jbuf3d/fanSJfEuGW/jXw+Fhm8lMPtEeYgYNJ7KCJPTSw6VQcyrmeq1a7xp4et3sLsQty2qwwHIGxVh1XkjsYpnDEkpwzRZzKPDYtbfhxiWgS946LCg7+kEHWfcL33oBjRsrDVcd4WtwuO2KWFV4kEpCWUI6at5/0g+8U0qqOaTDXg2q351liNnVQXIMcO5affgUzXEGQle0OEEZFBXsIVMH8uK6bKoc2VxqlEscQtATXNC6ZGapsewebbqrKxghhII3pHLSxVV7AIguW1kBeCI1QROltodf8wNCEcU5lUeBXnSzIBAKqfQwMfEhkfYVAo5BZvfJVSABLFSAIWFIA2+rfc0HHJMwZrdeC1Awqx1Zyf8AzI/QCmCV+qMzu2rKmoAw8g9VOltx2MEj6miEioMThkn4R/Ip0qhGGXtUUSHDLPH8zQTQubCJHFSUFh/GagNagRs36rQKIVAp0sCOhB+s0Ey9FVASJAO5/T2p0gSYu0BG1RQBI9sAxA33/n70FEy5intqWVoZVlW2JUgiCJ6iaBRarL+irCLqv3iJcQgJ32Ylm95JAk+1VNVr9lts53sXf8h/LerBqq15dlxJusNTRKiNRjSTJHPBgD5UjRmrHLTZD/7osL29tPStpfTaj/Eo+L5Ex7U2qXRWuKvFARbhFRQQqAAH2O3HyigclAJWfPibEE7Mq+wUf7yaoNV0q8UWQv/Z" 
+                             alt="Smartphone" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">PUBG 320 UC</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Vous êtes sur le point de faire le plein de PUBG UC. Avec des UC, vous pouvez obtenir des récompenses Elite Royale Pass et Elite Plus Royale Pass, acheter des skins cool, débloquer de nouveaux personnages et bien plus encore.</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">3,600 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20smartphone%20128GB" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="data:image/jpeg;base64,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" " " 
+                             alt="Télévision" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">PUBG 660 UC</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Vous êtes sur le point de faire le plein de PUBG UC. Avec des UC, vous pouvez obtenir des récompenses Elite Royale Pass et Elite Plus Royale Pass, acheter des skins cool, débloquer de nouveaux personnages et bien plus encore.  </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="font-bold text-green-600">18,000 FCFA</span>
+                                <span class="text-xs text-red-500 line-through ml-2">25,000 FCFA</span>
+                            </div>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20la%20TV%20LED%2032%22" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-67774643746576090.jpg" 
+                             alt="Télévision" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">35-106cm Téléphone portable Trépied pour iPhone 6 7 X Andriod"</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Téléphone Support à Clip Set pour DSLR caméra avec Télécommande tripode para movil</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="font-bold text-green-600">18,000 FCFA</span>
+                                <span class="text-xs text-red-500 line-through ml-2">25,000 FCFA</span>
+                            </div>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20la%20TV%20LED%2032%22" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1650964421552h6iXE224ZT.jpg" 
+                             alt="Smartphone" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">RGB LED Anneau Selfie Vidéo Anneau Lampe Avec Trépied Stand</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">USB Plug 15 Couleurs 3 Modèle Pour YouTube En Direct maquillage Photographie</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">6,000 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20smartphone%20128GB" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1725848239338pp8AhAGNrt.jpg" 
+                             alt="Montre connectée" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">Nouveau</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Microphone capacitif BM800USB </h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Microphone capacitif BM800USB Microphone en direct Ordinateur mobile Réseau Ancre KTV Microphone d'enregistrement <br> <span class="text-xs text-red-500 ">Livraison gratuite</span></p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">20,800 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20la%20montre%20connectée" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+            <img src="https://th.bing.com/th/id/OIP.GTVM00B-rsfNArDRkYeKxQHaEK?w=285&h=180&c=7&r=0&o=7&cb=iwp1&pid=1.7&rm=3"
+                             alt="Sac à dos" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Free Fire 100 Diamonds</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Préparez-vous à vous battre dans Free Fire, l'un des jeux de bataille royale les plus populaires sur les plateformes mobiles.</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">1,000 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20sac%20à%20dos%20anti-vol" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="https://th.bing.com/th/id/OIP.GTVM00B-rsfNArDRkYeKxQHaEK?w=285&h=180&c=7&r=0&o=7&cb=iwp1&pid=1.7&rm=3" 
+                             alt="Chaussures" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">Nouveau</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Free Fire 210 Diamonds</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Préparez-vous à vous battre dans Free Fire, l'un des jeux de bataille royale les plus populaires sur les plateformes mobiles.</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">1,900 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20les%20chaussures%20de%20sport" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="https://th.bing.com/th/id/OIP.GTVM00B-rsfNArDRkYeKxQHaEK?w=285&h=180&c=7&r=0&o=7&cb=iwp1&pid=1.7&rm=3" 
+                             alt="Cuisine" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">
+                                Free Fire 530 Diamonds</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Préparez-vous à vous battre dans Free Fire, l'un des jeux de bataille royale les plus populaires sur les plateformes mobiles.</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">5,050 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20set%20de%20cuisine" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="https://ecartes.orange.com/bf/wp-content/uploads/Carte-Netflix_dollars-300x190.png"
+                             alt="Produits beauté" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Netflix 15$ !</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Aimez-vous les films, les series, et les animes ? Voici la solution avec Netflix !
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="font-bold text-green-600">14,900 FCFA</span>
+                                <span class="text-xs text-red-500 line-through ml-2">10,000 FCFA</span>
+                            </div>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20kit%20beauté%20complet" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="https://ecartes.orange.com/bf/wp-content/uploads/Carte-Netflix_dollars-300x190.png"
+                             alt="Produits beauté" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Netflix 15$ !</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Aimez-vous les films, les series, et les animes ? Voici la solution avec Netflix !
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="font-bold text-green-600">14,900 FCFA</span>
+                                <span class="text-xs text-red-500 line-through ml-2">10,000 FCFA</span>
+                            </div>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20kit%20beauté%20complet" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                
+                <!-- Product 8 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="https://ecartes.orange.com/bf/wp-content/uploads/Carte-Netflix_dollars-300x190.png" 
+                             alt="Décorations" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Netflix 25£</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Netflix 25€ vous permet de recharger votre compte Netflix de 25€ et ainsi payer votre abonnement Netflix.  
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">23,000 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20la%20décoration%20murale" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1715243645218k28bbDEMZE.jpg" 
+                             alt="Sac à dos" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Combinaison souris et clavier lumineux RGB</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Li magnésium GTX300 clavier lumineux et souris ensemble clavier USB et souris jeu de souris clavier ensemble sept couleurs rétro-éclairage</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">25,000 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20sac%20à%20dos%20anti-vol" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1658479128777Jkmda6fKGi.jpg" 
+                             alt="Sac à dos" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Haute vitesse XIAOMI</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">2T type-c usb double clé USB OTG usb Flash Drive</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">10,000 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20sac%20à%20dos%20anti-vol" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1649318558184TBTaFKRnXa.jpg" 
+                             alt="Sac à dos" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">HP 2TB Haute-Vitesse Lecteurs Flash </h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Portable En Métal U Disque Stylo Lecteur Flash Memory Stick avec rotation Conception USB 2.0 Exte</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">25,000 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20sac%20à%20dos%20anti-vol" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1687743765772PMksXaKpPa.jpg" 
+                             alt="Sac à dos" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">TOSHIBA D'origine Haute Vitesse 4TB 16TB SSD Disque Dur Externe</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">TOSHIBA D'origine Haute Vitesse 4TB 16TB SSD Disque Dur Externe SSD TYPE-C Mobile Externe Solid State Disques pour Ordinateurs Portables de bureau</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">25,000 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20sac%20à%20dos%20anti-vol" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="fashion">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-72750164489704149.jpg?x-oss-process=style/p_list" 
+                             alt="Décorations" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Euroaméricain mode</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">polyvalent imitation perle collier boucle d'oreille ensemble de bijoux 
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">5,500 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20la%20décoration%20murale" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="fashion">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1674119954508mtJDMmGzKD.jpg" 
+                             alt="Décorations" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Nouveauté T-shirt</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">manches courtes femme ample grand haut moyen et Long 
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">5,500 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20la%20décoration%20murale" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="fashion">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-29033214907696330.jpg" 
+                             alt="Décorations" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Euroaméricain mode</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">polyvalent imitation perle collier boucle d'oreille ensemble de bijoux 
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">5,500 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20la%20décoration%20murale" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="fashion">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-17135425269434DtD7MZ5Mm.jpg" 
+                             alt="Chaussures" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">Nouveau</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Femmes Montre Ensemble De Luxe Argent Robe Quartz Montre</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Bracelet Dames Sport Montre-Bracelet Horloge Cadeau Femme Relogio Feminino 2024</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">5,900 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20les%20chaussures%20de%20sport" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="fashion">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1717342093673rW4BJtkEMn.jpg" 
+                             alt="Cuisine" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">
+                                6 pcs/ensemble Femmes de Mode Carré Montre Marque Dames</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Quartz Montre-Bracelet Femmes Montres Bleu Classique Simple Femme Ensemble de Bijoux</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">8000 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20set%20de%20cuisine" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="beauty">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1677682035932SN35e6SGE7.jpg" 
+                             alt="Produits beauté" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">13 pièces/lot pinceaux de maquillage ensemble ombre à paupières</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">13 pièces/lot pinceaux de maquillage ensemble ombre à paupières fondation femmes cosmétique poudre Blush mélange beauté maquillage outil
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="font-bold text-green-600">8000 FCFA</span>
+                                <span class="text-xs text-red-500 line-through ml-2">10,000 FCFA</span>
+                            </div>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20kit%20beauté%20complet" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="fashion">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1725539820652ssErhMZkPY.jpg" 
+                             alt="Produits beauté" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Mode Hommes Montre </h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2"> Ensemble cadeau 2 pcs/ensemble noir en cuir simple d'affaires hommes montre À Quartz avec Bracelet Pour Hommes
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="font-bold text-green-600">8000 FCFA</span>
+                                <span class="text-xs text-red-500 line-through ml-2">10,000 FCFA</span>
+                            </div>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20kit%20beauté%20complet" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="fashion">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1693495081152sRW2t7ZWCE.jpg" 
+                             alt="Produits beauté" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Ensemble à manches courtes pour hommes</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">tous les tailles disponibles,Nouveau Short Long Sport polyvalent et décontracté Ensemble deux/trois pièces<span class="font-bold text-red-500">M, L, XL..</span>
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="font-bold text-green-600">14,000 FCFA</span>
+                                <span class="text-xs text-red-500 line-through ml-2">15,000 FCFA</span>
+                            </div>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20kit%20beauté%20complet" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="fashion">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1718861846737ehKe8id5Bm.jpg" 
+                             alt="Produits beauté" class="w-full h-48 object-co ver">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">">à la mode romaine</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">section d'été Crème solaire Beau mignon garçons casquette de baseball Bébé canard langue cap
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="font-bold text-green-600">6,000 FCFA</span>
+                                <span class="text-xs text-red-500 line-through ml-2">8,000 FCFA</span>
+                            </div>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20kit%20beauté%20complet" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="fashion">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-1616985028946.jpeg" 
+                             alt="Produits beauté" class="w-full h-48 object-co ver">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">4 ensembles de sacs à main dames</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">sacs à main en cuir PU portefeuilles et sacs à main 2021 dames portefeuilles épaule messenger sac
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="font-bold text-green-600">11, 000 FCFA</span>
+                                <span class="text-xs text-red-500 line-through ml-2">8,000 FCFA</span>
+                            </div>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20kit%20beauté%20complet" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="fashion">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1720345069117bHcWntEdzi.jpg" 
+                             alt="Produits beauté" class="w-full h-48 object-co ver">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Montres d'affaires</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Wokai Casual ceinture montres à quartz montres pour hommes d'âge mûr
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="font-bold text-green-600">3,500 FCFA</span>
+                                <span class="text-xs text-red-500 line-through ml-2">8,000 FCFA</span>
+                            </div>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20kit%20beauté%20complet" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="fashion">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1685442352233McpihFR4ER.jpg" 
+                             alt="Produits beauté" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">à la mode romaine</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">motif diamant incrusté montre femme montre à quartz bracelet montre femme
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="font-bold text-green-600">6,000 FCFA</span>
+                                <span class="text-xs text-red-500 line-through ml-2">8,000 FCFA</span>
+                            </div>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20kit%20beauté%20complet" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="fashion">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-172679804611382wpsznh7M.jpg" 
+                             alt="Produits beauté" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Ensemble de 13 morceaux de batterie de cuisine,</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2"> pot antiadhésif, pot de soupe, marmite, poêle à frire, ensemble multi de morceau pour la cuisine
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="font-bold text-green-600">43,000 FCFA</span>
+                                <span class="text-xs text-red-500 line-through ml-2">8,000 FCFA</span>
+                            </div>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20kit%20beauté%20complet" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="beauty">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-63791843579979339.jpg" 
+                             alt="Décorations" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Kit de maquillage TOUT EN UN Ensemble de maquillage complet</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Kit de maquillage TOUT EN UN Ensemble de maquillage complet du visage Ombre à paupières Brillant à lèvres Eyeliner Pinceaux de maquillage Cosmétiques Sac Produits de maquillage
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">15,500 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20la%20décoration%20murale" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="beauty">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1661658643565TKa4pHBTH3.jpg" 
+                             alt="Décorations" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">POPFEEL Tout En Un Kit de Maquillage </h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">(Fard À Paupières, LiGloss, Rouge À Lèvres, Brosses, Sourcils, Anti-cernes) beauté Cosmétique Sac
+
+                        </p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">15,500 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20la%20décoration%20murale" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="beauty">
+                    <div class="relative">
+                        <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-77410358662901449.jpg" 
+                             alt="Décorations" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg">Nouveau voyage 5 pièces miroir</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2"> boîte maquillage brosse ensemble portable multi-fonctionnelle poudre lâche brosse blush brosse beauté outil
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-green-600">5,000 FCFA</span>
+                            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20la%20décoration%20murale" 
+                               class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                                <i class="fab fa-whatsapp mr-1"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+<!-- From Uiverse.io by vinodjangid07 --> 
+<div class="loader" id="loader" style="display: none;">
+    <div class="truckWrapper">
+      <div class="truckBody">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 198 93"
+          class="trucksvg"
+        >
+          <path
+            stroke-width="3"
+            stroke="#282828"
+            fill="#F83D3D"
+            d="M135 22.5H177.264C178.295 22.5 179.22 23.133 179.594 24.0939L192.33 56.8443C192.442 57.1332 192.5 57.4404 192.5 57.7504V89C192.5 90.3807 191.381 91.5 190 91.5H135C133.619 91.5 132.5 90.3807 132.5 89V25C132.5 23.6193 133.619 22.5 135 22.5Z"
+          ></path>
+          <path
+            stroke-width="3"
+            stroke="#282828"
+            fill="#7D7C7C"
+            d="M146 33.5H181.741C182.779 33.5 183.709 34.1415 184.078 35.112L190.538 52.112C191.16 53.748 189.951 55.5 188.201 55.5H146C144.619 55.5 143.5 54.3807 143.5 53V36C143.5 34.6193 144.619 33.5 146 33.5Z"
+          ></path>
+          <path
+            stroke-width="2"
+            stroke="#282828"
+            fill="#282828"
+            d="M150 65C150 65.39 149.763 65.8656 149.127 66.2893C148.499 66.7083 147.573 67 146.5 67C145.427 67 144.501 66.7083 143.873 66.2893C143.237 65.8656 143 65.39 143 65C143 64.61 143.237 64.1344 143.873 63.7107C144.501 63.2917 145.427 63 146.5 63C147.573 63 148.499 63.2917 149.127 63.7107C149.763 64.1344 150 64.61 150 65Z"
+          ></path>
+          <rect
+            stroke-width="2"
+            stroke="#282828"
+            fill="#FFFCAB"
+            rx="1"
+            height="7"
+            width="5"
+            y="63"
+            x="187"
+          ></rect>
+          <rect
+            stroke-width="2"
+            stroke="#282828"
+            fill="#282828"
+            rx="1"
+            height="11"
+            width="4"
+            y="81"
+            x="193"
+          ></rect>
+          <rect
+            stroke-width="3"
+            stroke="#282828"
+            fill="#DFDFDF"
+            rx="2.5"
+            height="90"
+            width="121"
+            y="1.5"
+            x="6.5"
+          ></rect>
+          <rect
+            stroke-width="2"
+            stroke="#282828"
+            fill="#DFDFDF"
+            rx="2"
+            height="4"
+            width="6"
+            y="84"
+            x="1"
+          ></rect>
+        </svg>
+      </div>
+      <div class="truckTires">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 30 30"
+          class="tiresvg"
+        >
+          <circle
+            stroke-width="3"
+            stroke="#282828"
+            fill="#282828"
+            r="13.5"
+            cy="15"
+            cx="15"
+          ></circle>
+          <circle fill="#DFDFDF" r="7" cy="15" cx="15"></circle>
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 30 30"
+          class="tiresvg"
+        >
+          <circle
+            stroke-width="3"
+            stroke="#282828"
+            fill="#282828"
+            r="13.5"
+            cy="15"
+            cx="15"
+          ></circle>
+          <circle fill="#DFDFDF" r="7" cy="15" cx="15"></circle>
+        </svg>
+      </div>
+      <div class="road"></div>
+  
+      <svg
+        xml:space="preserve"
+        viewBox="0 0 453.459 453.459"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
+        id="Capa_1"
+        version="1.1"
+        fill="#000000"
+        class="lampPost"
+      >
+        <path
+          d="M252.882,0c-37.781,0-68.686,29.953-70.245,67.358h-6.917v8.954c-26.109,2.163-45.463,10.011-45.463,19.366h9.993
+  c-1.65,5.146-2.507,10.54-2.507,16.017c0,28.956,23.558,52.514,52.514,52.514c28.956,0,52.514-23.558,52.514-52.514
+  c0-5.478-0.856-10.872-2.506-16.017h9.992c0-9.354-19.352-17.204-45.463-19.366v-8.954h-6.149C200.189,38.779,223.924,16,252.882,16
+  c29.952,0,54.32,24.368,54.32,54.32c0,28.774-11.078,37.009-25.105,47.437c-17.444,12.968-37.216,27.667-37.216,78.884v113.914
+  h-0.797c-5.068,0-9.174,4.108-9.174,9.177c0,2.844,1.293,5.383,3.321,7.066c-3.432,27.933-26.851,95.744-8.226,115.459v11.202h45.75
+  v-11.202c18.625-19.715-4.794-87.527-8.227-115.459c2.029-1.683,3.322-4.223,3.322-7.066c0-5.068-4.107-9.177-9.176-9.177h-0.795
+  V196.641c0-43.174,14.942-54.283,30.762-66.043c14.793-10.997,31.559-23.461,31.559-60.277C323.202,31.545,291.656,0,252.882,0z
+  M232.77,111.694c0,23.442-19.071,42.514-42.514,42.514c-23.442,0-42.514-19.072-42.514-42.514c0-5.531,1.078-10.957,3.141-16.017
+  h78.747C231.693,100.736,232.77,106.162,232.77,111.694z"
+        ></path>
+      </svg>
+    </div>
+    <p style="font-size: 20px;">Pas de produits actuellement !</p>
+  </div>
+</div>
+     </div>
+            <!-- Pagination -->
+            <div class="Pagination">
+                <a href="gd.html">PREVIOUS<<</a>
+                <a href="gd.html">1</a>
+                <a href="products.html"class="active1">2</a>
+                <a href="page2.html">3</a>
+                <a href="page2.html" class="NEXT">>>NEXT</a>
+            </div>
+             <!-- Pagination 
+              <a href="page3.html">3</a>
+                <a href="page4.html">4</a>
+                <a href="page5.html">5</a>
+                <a href="page6.html">6</a>
+                
+                
+            -->
+        </div>
+    </section>
+    <!--WhatsApp Float Button -->
+    <a href="https://wa.me/22397649912" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <span class="country-flag"></span>
+                        <h3 class="text-xl font-bold ml-2">Shop<span class="text-orange-400">Mali</span></h3>
+                    </div>
+                    <p class="text-gray-400">
+                        La solution e-commerce adaptée au Mali. Achetez facilement via WhatsApp.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Liens rapides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
+                        <li><a href="produits.html" class="text-gray-400 hover:text-white">Produits</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">À propos</a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Mentions légales</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Conditions générales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Politique de confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Politique de retour</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Suivez-nous</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-400">Téléphone:</p>
+                        <p class="font-medium">+223 97 64 99 12</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 ShopMali. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <span class="country-flag"></span>
+                        <h3 class="text-xl font-bold ml-2">My Chop<span class="text-orange-400">Online</span></h3>
+                    </div>
+                    <p class="text-gray-400">
+                        La solution e-commerce adaptée au Mali. Achetez facilement via WhatsApp.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Liens rapides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
+                        <li><a href="produits.html" class="text-gray-400 hover:text-white">Produits</a></li>
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-white">À propos</a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Mentions légales</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Conditions générales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Politique de confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Politique de retour</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Suivez-nous</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-400">Téléphone:</p>
+                        <p class="font-medium">+223 97 64 99 12</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 mychoponline. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+
+
+    // Sélectionner tous les boutons de filtre
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.getAttribute('data-category');
+            
+            // Si on clique sur "Maison" (home)
+            if (category === "home") {
+                // Afficher le loader
+                document.getElementById('loader').style.display = 'flex';
+            } else {
+                // Sinon, masquer le loader
+                document.getElementById('loader').style.display = 'none';
+            }
+        });
+    });
+
+  
+
+
+         // Filter products by category
+         document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                const products = document.querySelectorAll('.product-card');
+                
+                products.forEach(product => {
+                    product.style.display = (category === 'all' || product.dataset.category === category) ? 'block' : 'none';
+                });
+            });
+        });
+
+  function dismissWarning() {
+    const warning = document.getElementById('delivery-warning');
+    if (warning) {
+      warning.style.display = 'none';
+    }
+  }
+
+  // Affiche toujours le message au chargement de la page
+  window.addEventListener('DOMContentLoaded', () => {
+    const warning = document.getElementById('delivery-warning');
+    if (warning) {
+      warning.style.display = 'flex'; // au cas où il aurait été caché
+    }
+  });
+
+  </script>        
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Produits - ShopMali</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .whatsapp-btn {
+            background-color: #25D366;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+        .country-flag {
+            width: 20px;
+            height: 15px;
+            display: inline-block;
+            background-image: url('https://flagcdn.com/w20/ml.png');
+            background-size: cover;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+.filter-btn.active {
+            --color: #560bad;
+  font-family: inherit;
+  display: inline-block;
+  width: 8em;
+  height: 2.6em;
+  line-height: 2.5em;
+  margin: 20px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color 0.5s;
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--color);
+}
+.filter-btn:before  {
+content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+ }
+ .filter-btn:hover {
+    color: #fff;
+ }
+
+ .filter-btn:before{
+    top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+ }
+ .filter-btn:hover:before{
+    top: -30px;
+  left: -30px;
+ }
+ .filter-btn:active::before{
+background: #3a0ca3;
+  transition: background 0s;
+ 
+ }
+.auth-modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .auth-content {
+            animation: modalopen 0.5s;
+        }
+        @keyframes modalopen {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        .active2{
+            background-color: #25D366;
+        }
+
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .alert-box {
+      background: hsl(0, 78%, 53%);
+      border-radius: 10px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .alert-box h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+    .alert-box p {
+      color: #ffffff;
+      font-size: 1em;
+      margin-bottom: 25px;
+    }
+    .alert-box button {
+      background-color: #007BFF;
+      color: hsl(0, 0%, 100%);
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 1em;
+      cursor: not-allowed;
+      opacity: 0.6;
+      transition: 0.3s;
+    }
+    .alert-box button.enabled {
+      cursor: pointer;
+      opacity: 1;
+    }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="country-flag"></span>
+                <a href="index.html" class="text-xl font-bold text-blue-700 ml-2">My Chop<span class="text-blue-400">Online</span></a>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="gd.html" class="text-green-600 font-medium">Accueil</a>
+                <a href="products.html" class="text-gray-700 hover:text-green-600">Produits</a>
+                <a href="about.html" class="text-gray-700 hover:text-green-600">À propos</a>
+                <a href="index.html#contact" class="text-gray-700 hover:text-green-600">Contact</a>
+            </nav>
+        </div>
+        <div class="overlay" id="alertOverlay">
+            <div class="alert-box">
+              <h2>ℹ️ Livraison flexible</h2>
+              <p>
+                Cher client, veuillez noter que les délais de livraison peuvent varier selon la disponibilité et la localisation.<br>
+                Merci pour votre compréhension et votre confiance.
+              </p>
+              <button id="agreeBtn" disabled>D'accord (5)</button>
+            </div>
+          </div>
+          
+    </header>
+
+    <!-- Products Hero -->
+    <section class="bg-gradient-to-r from-green-600 to-blue-800 py-12 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Nos Produits</h1>
+            <p class="text-xl max-w-2xl mx-auto">Découvrez notre sélection exclusive de produits disponibles pour commande via WhatsApp</p>
+        </div>
+    </section>
+
+    <!-- Products Filter -->
+    <section class="py-6 bg-violet-300 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-semibold text-gray-800">Filtrer par catégorie</h2>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button class="filter-btn px-0 py-0 rounded-full border border-blue-300 hover:bg-blue-100 active" data-category="all">All
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="products-grid">
+               <!-- Product 1 -->
+<!-- Product 1 -->
+<div class="bg-white-400 rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+    <div class="relative">
+      <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-1529671211428.jpeg" alt="Montre connectée" class="w-full h-48 object-cover">
+    </div>
+    <div class="p-4">
+      <div class="flex justify-between items-start mb-1">
+        <h3 class="font-bold text-lg">Femmes Argent/or</h3>
+        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+      </div>
+      <p class="text-gray-600 text-sm mb-2">Couleur Cubique Zircone Collier Musulman Religieux Bijoux</p>
+      <div class="flex justify-between items-center mt-4">
+        <span class="font-bold text-green-600">3,000 FCFA</span>
+        <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20les%colliers%20musulman%20religieux%20bijoux%20fil%20-3000%20FCFA" class="px-3 py-1 bg-green-100 text-green-400 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+            <i class="fab fa-whatsapp mr-1"></i> Commander
+        </a>
+      </div>
+    </div>
+  </div>
+  
+
+<!-- Product 2 -->
+<div class="bg-white-400 rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+    <div class="relative">
+        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1681781992297RXXYaXkK8J.jpg" alt="Smartphone" class="w-full h-48 object-cover">
+    </div>
+    <div class="p-4">
+        <div class="flex justify-between items-start mb-1">
+            <h3 class="font-bold text-lg">Écouteurs stéréo casque sans fil</h3>
+            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+        </div>
+        <p class="text-gray-600 text-sm mb-2">avec micro lunettes polarisées lunettes de soleil pour la conduite cyclisme sport réduction du bruit casque</p>
+        <div class="flex justify-between items-center mt-4">
+            <span class="font-bold text-green-600">6,500 FCFA</span>
+            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20les%20écouteurs%20stéréo%20casque%20sans%20fil%20-%20avec%20micro%20lunettes%20polares%20lunettes%20de%20soleil%20pour%20la%20conduite%20cyclisme%20sport%20réduction%20du%20bruit%20-%206,500%20FCFA" class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                <i class="fab fa-whatsapp mr-1"></i> Commander
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Product 3 -->
+<div class="bg-white-400 rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
+    <div class="relative">
+        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1725855895989M3Wm48HsQ5.jpg" alt="Télévision" class="w-full h-48 object-cover">
+        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
+    </div>
+    <div class="p-4">
+        <div class="flex justify-between items-start mb-1">
+            <h3 class="font-bold text-lg">S24 Ultra Smartphone 5G</h3>
+            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+        </div>
+        <p class="text-gray-600 text-sm mb-2">7.3 pouces Écran 16GB + 1TB 50MP + 108MP 8000mAh Double SIM Reconnaissance de Visage Version Globale Android Mobile Téléphone</p>
+        <div class="flex justify-between items-center mt-4">
+            <div>
+                <span class="font-bold text-green-600">56,000 FCFA</span>
+                <span class="text-xs text-red-500 line-through ml-2">25,000 FCFA</span>
+            </div>
+            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20le%20smartphone%20S24%20Ultra%205G%20-%207.3%20pouces%20Écran%20-%2016GB%20+%201TB%20-%2056,000%20FCFA" class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                <i class="fab fa-whatsapp mr-1"></i> Commander
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Product 4 -->
+<div class="bg-white-400 rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="mode">
+    <div class="relative">
+        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1741952592252cfHxMaEYya.jpg" alt="Sac" class="w-full h-48 object-cover">
+    </div>
+    <div class="p-4">
+        <div class="flex justify-between items-start mb-1">
+            <h3 class="font-bold text-lg">Litchi motif quatre pièces ensemble</h3>
+            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
+        </div>
+        <p class="text-gray-600 text-sm mb-2">à la mode et simple Européen et Américain polyvalent sac à main, grande capacité femmes sac</p>
+        <div class="flex justify-between items-center mt-4">
+            <span class="font-bold text-green-600">15,000 FCFA</span>
+            <a href="https://wa.me/22397649912?text=Je%20souhaite%20commander%20motifs%20quatre pièces,15,000%20FCFA" class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
+                <i class="fab fa-whatsapp mr-1"></i> Commander
+            </a> 
+        </div>
+    </div>
+</div>
+    </section>
+    <!--WhatsApp Float Button -->
+    <a href="https://wa.me/22397649912" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+        </div>
+<!-- From Uiverse.io by barisdogansutcu --> 
+<a href="products.html" class="but"><button class="but">Voir plus</button></a>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <span class="country-flag"></span>
+                        <h3 class="text-xl text-blue-400 ml-2">My Chop<span class="text-blue-300">Online</span></h3>
+                    </div>
+                    <p class="text-gray-400">
+                        La solution e-commerce adaptée au Mali. Achetez facilement via WhatsApp.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Liens rapides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="gd.html" class="text-gray-400 hover:text-white">Accueil</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white">Produits</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white" target="blank">À propos</a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Mentions légales</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Conditions générales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Politique de confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Politique de retour</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Suivez-nous</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-400">Téléphone:</p>
+                        <p class="font-medium">+223 97 64 99 12</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 mychoponline. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+<script>
+const btn = document.getElementById("agreeBtn");
+  const overlay = document.getElementById("alertOverlay");
+  let count = 5;
+
+  const countdown = setInterval(() => {
+    count--;
+    btn.textContent = `D'accord (${count})`;
+    if (count <= 0) {
+      clearInterval(countdown);
+      btn.textContent = "D'accord";
+      btn.disabled = false;
+      btn.classList.add("enabled");
+    }
+  }, 1000);
+
+  btn.addEventListener("click", () => {
+    if (!btn.disabled) {
+      overlay.style.display = "none";
+    }
+  });
+
+         // Filter products by category
+         document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                const products = document.querySelectorAll('.product-card');
+                
+                products.forEach(product => {
+                    product.style.display = (category === 'all' || product.dataset.category === category) ? 'block' : 'none';
+                });
+            });
+        });
+
+  function dismissWarning() {
+    const warning = document.getElementById('delivery-warning');
+    if (warning) {
+      warning.style.display = 'none';
+    }
+  }
+
+  // Affiche toujours le message au chargement de la page
+  window.addEventListener('DOMContentLoaded', () => {
+    const warning = document.getElementById('delivery-warning');
+    if (warning) {
+      warning.style.display = 'flex'; // au cas où il aurait été caché
+    }
+  });
+
+  </script>        
+</body>
+</html>
