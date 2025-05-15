@@ -157,7 +157,55 @@ background: #3a0ca3;
                 <span class="country-flag"></span>
                 <a href="index.html" class="text-xl font-bold text-blue-700 ml-2">My Chop<span class="text-blue-400">Online</span></a>
             </div>
-            
+            <div class="relative mr-4 w-full max-w-xs">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 w-full"
+                    placeholder="Rechercher un produit..."
+                >
+                <span class="absolute left-3 top-2.5 text-gray-400">
+                    <i class="fas fa-search"></i>
+                </span>
+            </div>
+            <script>
+            // Mapping of English keywords to French equivalents
+            const keywordMap = {
+                'ring': ['bague', 'ring'],
+                'bracelet': ['bracelet'],
+                'necklace': ['collier', 'necklace'],
+                'earring': ['boucle', 'earring'],
+                'watch': ['montre', 'watch'],
+                'bag': ['sac', 'bag'],
+                'phone': ['téléphone', 'smartphone', 'phone'],
+                'headphone': ['écouteur', 'casque', 'headphone', 'earphone'],
+                'sun glasses': ['lunettes', 'sunglasses'],
+                'gold': ['or', 'gold'],
+                'silver': ['argent', 'silver'],
+                // Add more mappings as needed
+            };
+
+            function getAllKeywords(query) {
+                let keywords = [query];
+                for (const [en, frArr] of Object.entries(keywordMap)) {
+                    if (en.includes(query) || frArr.some(f => f.includes(query))) {
+                        keywords = keywords.concat([en, ...frArr]);
+                    }
+                }
+                return Array.from(new Set(keywords));
+            }
+
+            document.getElementById('searchInput').addEventListener('input', function() {
+                const query = this.value.trim().toLowerCase();
+                const keywords = getAllKeywords(query);
+                document.querySelectorAll('.product-card').forEach(card => {
+                    const name = card.querySelector('h3')?.textContent.toLowerCase() || '';
+                    const desc = card.querySelector('p')?.textContent.toLowerCase() || '';
+                    const match = keywords.some(k => name.includes(k) || desc.includes(k));
+                    card.style.display = match || !query ? 'block' : 'none';
+                });
+            });
+            </script>
             <nav class="hidden md:flex space-x-8">
                 <a href="gd.html" class="text-green-600 font-medium">Accueil</a>
                 <a href="products.html" class="text-gray-700 hover:text-green-600">Produits</a>
@@ -405,3 +453,5 @@ const btn = document.getElementById("agreeBtn");
   </script>        
 </body>
 </html>
+Footer
+© 2
