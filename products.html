@@ -1961,9 +1961,6 @@ function closeModal() {
 }
 
 // Fonction pour afficher le popup d'erreur
-// ...existing code...
-
-// Fonction pour afficher le popup d'erreur
 function showErrorPopup() {
   closeModal();
   setTimeout(() => {
@@ -1977,28 +1974,11 @@ function showErrorPopup() {
   }, 150);
 }
 
-// Fonction qui protège tous les boutons WhatsApp
-// Fonction qui protège tous les boutons WhatsApp
-function attachWhatsappProtection() {
-  document.querySelectorAll('.whatsapp-btn').forEach(btn => {
-    if (!btn.dataset.protected) {
-      btn.addEventListener('click', function(e) {
-        const user = localStorage.getItem('user');
-        if (!user) {
-          e.preventDefault();
-          showErrorPopup();
-          return false;
-        }
-      });
-      btn.dataset.protected = "1";
-    }
-  });
-}
+// ...existing code...
 
-// Appel initial au chargement
-// Fonction qui protège tous les boutons WhatsApp
 function attachWhatsappProtection() {
   document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+    // Pour éviter d'ajouter plusieurs fois le même listener
     if (!btn.dataset.protected) {
       btn.addEventListener('click', function(e) {
         const user = localStorage.getItem('user');
@@ -2016,49 +1996,51 @@ function attachWhatsappProtection() {
 // Appel initial au chargement
 attachWhatsappProtection();
 
-// --- AJOUTE CETTE PARTIE ---
-// Recherche sur tous les produits chargés
-document.addEventListener('DOMContentLoaded', function () {
-  // ...existing code...
-  const searchInput = document.getElementById('search-bar');
-  const productsGrid = document.getElementById('products-grid');
-  let allProductsHTML = [];
+// ...si tu ajoutes des produits dynamiquement, rappelle cette fonction après chaque ajout/filtrage/recherche
 
-  // ...existing code pour charger les produits...
-
-  // Après chaque affichage de produits (chargement, recherche, filtre), rappelle la protection :
-  function refreshProductsDisplay(cards) {
-    productsGrid.innerHTML = '';
-    cards.forEach(card => productsGrid.appendChild(card.cloneNode(true)));
-    attachWhatsappProtection(); // <-- IMPORTANT
-    attachModalEvents && attachModalEvents(); // si tu utilises cette fonction pour les modals
-  }
-
-  // Quand tu affiches tous les produits au départ :
-  // refreshProductsDisplay(allProductsHTML);
-
-  // Pour la recherche :
-  searchInput.addEventListener('input', function () {
-    const query = this.value.trim().toLowerCase();
-    const filtered = allProductsHTML.filter(card => {
-      const name = card.querySelector('h3').textContent.toLowerCase();
-      const desc = card.querySelector('p').textContent.toLowerCase();
-      return !query || (name + ' ' + desc).includes(query);
-    });
-    refreshProductsDisplay(filtered);
-  });
-
-  // Pour le filtre par catégorie :
-  document.querySelectorAll('.filter-btn').forEach(button => {
-    button.addEventListener('click', function() {
-      const category = this.dataset.category;
-      const filtered = allProductsHTML.filter(card =>
-        category === 'all' || card.dataset.category === category
-      );
-      refreshProductsDisplay(filtered);
-    });
+// Bloquer la commande sans compte sur tous les boutons WhatsApp (hors modal)
+document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      e.preventDefault();
+      showErrorPopup();
+      return false;
+    }
   });
 });
+
+// Bloquer aussi sur le bouton WhatsApp du modal produit
+const modalWhatsapp = document.getElementById('modal-whatsapp');
+if (modalWhatsapp) {
+  modalWhatsapp.addEventListener('click', function(e) {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      e.preventDefault();
+      showErrorPopup();
+      return false;
+    }
+  });
+}
+
+// ...existing code...
+
+// ...existing code...
+         // Filter products by category
+         document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                const products = document.querySelectorAll('.product-card');
+                
+                products.forEach(product => {
+                    product.style.display = (category === 'all' || product.dataset.category === category) ? 'block' : 'none';
+                });
+            });
+        });
+
   function dismissWarning() {
     const warning = document.getElementById('delivery-warning');
     if (warning) {
