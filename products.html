@@ -1951,8 +1951,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-  // ...existing code...
-
 // Déclare le modal produit et la fonction closeModal globalement
 const modal = document.getElementById('product-modal');
 function closeModal() {
@@ -1961,8 +1959,6 @@ function closeModal() {
     modal.classList.remove('flex');
   }
 }
-
-
 
 // Fonction pour afficher le popup d'erreur
 function showErrorPopup() {
@@ -1977,6 +1973,30 @@ function showErrorPopup() {
     }, 3000);
   }, 150);
 }
+
+// ...existing code...
+
+function attachWhatsappProtection() {
+  document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+    // Pour éviter d'ajouter plusieurs fois le même listener
+    if (!btn.dataset.protected) {
+      btn.addEventListener('click', function(e) {
+        const user = localStorage.getItem('user');
+        if (!user) {
+          e.preventDefault();
+          showErrorPopup();
+          return false;
+        }
+      });
+      btn.dataset.protected = "1";
+    }
+  });
+}
+
+// Appel initial au chargement
+attachWhatsappProtection();
+
+// ...si tu ajoutes des produits dynamiquement, rappelle cette fonction après chaque ajout/filtrage/recherche
 
 // Bloquer la commande sans compte sur tous les boutons WhatsApp (hors modal)
 document.querySelectorAll('.whatsapp-btn').forEach(btn => {
