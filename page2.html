@@ -8,6 +8,86 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Message d'erreur animé */
+#error-popup {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 99999;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s;
+}
+.error-popup-content {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: popIn 0.25s;
+  min-width: 260px;
+}
+@keyframes popIn {
+  0% { transform: scale(0.7); opacity: 0; }
+  80% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.error-anim {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.error-anim svg {
+  width: 60px;
+  height: 60px;
+  display: block;
+}
+.error-circle {
+  stroke: #ef4444;
+  stroke-width: 4;
+  fill: none;
+  stroke-dasharray: 188;
+  stroke-dashoffset: 188;
+  animation: drawCircle 0.4s forwards;
+}
+.error-cross {
+  stroke: #ef4444;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 34;
+  stroke-dashoffset: 34;
+  fill: none;
+  animation: drawCross 0.3s 0.35s forwards;
+}
+@keyframes drawCircle {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes drawCross {
+  to { stroke-dashoffset: 0; }
+}
+.error-title {
+  color: #ef4444;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.error-desc {
+  color: #374151;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
         .whatsapp-btn {
             background-color: #25D366;
             transition: all 0.3s ease;
@@ -889,6 +969,20 @@ button:active {
                 <p>&copy; 2025 My Chop Online. Tous droits réservés.</p>
             </div>
         </div>
+        <!-- Message d'erreur animé pour commande sans compte -->
+<div id="error-popup" style="display:none;">
+  <div class="error-popup-content">
+    <div class="error-anim">
+      <svg width="60" height="60" viewBox="0 0 60 60">
+        <circle class="error-circle" cx="30" cy="30" r="28"/>
+        <line class="error-cross" x1="20" y1="20" x2="40" y2="40"/>
+        <line class="error-cross" x1="40" y1="20" x2="20" y2="40"/>
+      </svg>
+    </div>
+    <div class="error-title">Commande annulée</div>
+    <div class="error-desc">Vous devez être connecté pour commander.<br>Connectez-vous ou créez un compte.</div>
+  </div>
+</div>
     </footer>
 
    
@@ -977,6 +1071,33 @@ button:active {
     }
   });
 
+ // ...existing code...
+
+// Bloquer la commande sans compte sur tous les boutons WhatsApp
+document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      e.preventDefault();
+      // Fermer le modal produit d'abord
+      if (typeof closeModal === "function") closeModal();
+      // Attendre 150ms pour que le modal soit bien fermé avant d'afficher le popup
+      setTimeout(() => {
+        // Afficher le popup animé
+        const popup = document.getElementById('error-popup');
+        popup.style.display = 'flex';
+        // Ouvre la modale d'auth
+        const authModal = document.getElementById('auth-modal');
+        if (authModal) authModal.classList.add('active');
+        // Masquer le popup après 2,5 secondes
+        setTimeout(() => {
+          popup.style.display = 'none';
+        }, 3000);
+      }, 150);
+      return false;
+    }
+  });
+});
   </script>        
 </body>
 </html>
