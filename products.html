@@ -1961,6 +1961,9 @@ function closeModal() {
 }
 
 // Fonction pour afficher le popup d'erreur
+// ...existing code...
+
+// Fonction pour afficher le popup d'erreur
 function showErrorPopup() {
   closeModal();
   setTimeout(() => {
@@ -1974,10 +1977,10 @@ function showErrorPopup() {
   }, 150);
 }
 
-// ...existing code...
-
+// Fonction qui protège tous les boutons WhatsApp
 function attachWhatsappProtection() {
   document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+    // Pour éviter d'ajouter plusieurs fois le même listener
     if (!btn.dataset.protected) {
       btn.addEventListener('click', function(e) {
         const user = localStorage.getItem('user');
@@ -1995,21 +1998,18 @@ function attachWhatsappProtection() {
 // Appel initial au chargement
 attachWhatsappProtection();
 
-// ...si tu ajoutes des produits dynamiquement, rappelle cette fonction après chaque ajout/filtrage/recherche
-
-// Bloquer la commande sans compte sur tous les boutons WhatsApp (hors modal)
-document.querySelectorAll('.whatsapp-btn').forEach(btn => {
-  btn.addEventListener('click', function(e) {
-    const user = localStorage.getItem('user');
-    if (!user) {
-      e.preventDefault();
-      showErrorPopup();
-      return false;
-    }
-  });
+// Si tu ajoutes des produits dynamiquement (après recherche, filtre, etc.), rappelle cette fonction à chaque fois :
+document.addEventListener('DOMContentLoaded', function () {
+  // ...existing code...
+  // Après chaque modification du DOM (ex : après recherche, filtre, etc.)
+  // Ajoute attachWhatsappProtection(); juste après avoir affiché les produits
+  // Par exemple :
+  // productsGrid.innerHTML = '';
+  // ...ajout des produits...
+  // attachWhatsappProtection();
 });
 
-// Bloquer aussi sur le bouton WhatsApp du modal produit
+// Bloque aussi le bouton WhatsApp du modal produit
 const modalWhatsapp = document.getElementById('modal-whatsapp');
 if (modalWhatsapp) {
   modalWhatsapp.addEventListener('click', function(e) {
@@ -2021,6 +2021,7 @@ if (modalWhatsapp) {
     }
   });
 }
+
 // ...existing code...
 
 // ...existing code...
