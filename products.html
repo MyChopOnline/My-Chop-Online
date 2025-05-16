@@ -1932,82 +1932,132 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </footer>
     <script>
-// ...existing code...
 
-// Sélectionner tous les boutons de filtre
-document.querySelectorAll('.filter-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        const category = button.getAttribute('data-category');
-        // Si on clique sur "Maison" (home)
-        if (category === "home") {
-            // Afficher le loader
-            document.getElementById('loader').style.display = 'flex';
-        } else {
-            // Sinon, masquer le loader
-            document.getElementById('loader').style.display = 'none';
-        }
+
+    // Sélectionner tous les boutons de filtre
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.getAttribute('data-category');
+            
+            // Si on clique sur "Maison" (home)
+            if (category === "home") {
+                // Afficher le loader
+                document.getElementById('loader').style.display = 'flex';
+            } else {
+                // Sinon, masquer le loader
+                document.getElementById('loader').style.display = 'none';
+            }
+        });
     });
-});
+
 
 // Déclare le modal produit et la fonction closeModal globalement
 const modal = document.getElementById('product-modal');
 function closeModal() {
-    if (modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-    }
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+}
+
+// Fonction pour afficher le popup d'erreur
+function showErrorPopup() {
+  closeModal();
+  setTimeout(() => {
+    const popup = document.getElementById('error-popup');
+    popup.style.display = 'flex';
+    const authModal = document.getElementById('auth-modal');
+    if (authModal) authModal.classList.add('active');
+    setTimeout(() => {
+      popup.style.display = 'none';
+    }, 3000);
+  }, 150);
 }
 
 // ...existing code...
 
-// Fonction pour protéger tous les liens WhatsApp
 function attachWhatsappProtection() {
-    document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"]').forEach(btn => {
-        if (!btn.dataset.protected) {
-            btn.addEventListener('click', function(e) {
-                const user = localStorage.getItem('user');
-                if (!user) {
-                    e.preventDefault();
-                    showErrorPopup();
-                    return false;
-                }
-            });
-            btn.dataset.protected = "1";
+  document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+    // Pour éviter d'ajouter plusieurs fois le même listener
+    if (!btn.dataset.protected) {
+      btn.addEventListener('click', function(e) {
+        const user = localStorage.getItem('user');
+        if (!user) {
+          e.preventDefault();
+          showErrorPopup();
+          return false;
         }
-    });
+      });
+      btn.dataset.protected = "1";
+    }
+  });
 }
 
 // Appel initial au chargement
 attachWhatsappProtection();
 
-// Après chaque recherche/filtrage/chargement dynamique, rappelle cette fonction !
-const searchBar = document.getElementById('search-bar');
-if (searchBar) {
-    searchBar.addEventListener('input', function() {
-        setTimeout(attachWhatsappProtection, 100);
-    });
-}
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        setTimeout(attachWhatsappProtection, 100);
-    });
+// ...si tu ajoutes des produits dynamiquement, rappelle cette fonction après chaque ajout/filtrage/recherche
+
+// Bloquer la commande sans compte sur tous les boutons WhatsApp (hors modal)
+document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      e.preventDefault();
+      showErrorPopup();
+      return false;
+    }
+  });
 });
 
-// Fonction pour afficher le popup d'erreur
-function showErrorPopup() {
-    const errorPopup = document.getElementById('error-popup');
-    if (errorPopup) {
-        errorPopup.style.display = 'flex';
-        setTimeout(() => {
-            errorPopup.style.display = 'none';
-        }, 3000); // Cache le popup après 3 secondes
+// Bloquer aussi sur le bouton WhatsApp du modal produit
+const modalWhatsapp = document.getElementById('modal-whatsapp');
+if (modalWhatsapp) {
+  modalWhatsapp.addEventListener('click', function(e) {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      e.preventDefault();
+      showErrorPopup();
+      return false;
     }
+  });
 }
 
 // ...existing code...
 
-</script>        
-<!-- Message d'erreur animé pour commande sans compte -->
+// ...existing code...
+         // Filter products by category
+         document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                const products = document.querySelectorAll('.product-card');
+                
+                products.forEach(product => {
+                    product.style.display = (category === 'all' || product.dataset.category === category) ? 'block' : 'none';
+                });
+            });
+        });
+
+  function dismissWarning() {
+    const warning = document.getElementById('delivery-warning');
+    if (warning) {
+      warning.style.display = 'none';
+    }
+  }
+
+  // Affiche toujours le message au chargement de la page
+  window.addEventListener('DOMContentLoaded', () => {
+    const warning = document.getElementById('delivery-warning');
+    if (warning) {
+      warning.style.display = 'flex'; // au cas où il aurait été caché
+    }
+  });
+
+  </script>        
+    <!-- Message d'erreur animé pour commande sans compte -->
 <div id="error-popup" style="display:none;">
   <div class="error-popup-content">
     <div class="error-anim">
@@ -2017,10 +2067,6 @@ function showErrorPopup() {
         <line class="error-cross" x1="40" y1="20" x2="20" y2="40"/>
       </svg>
     </div>
-    <div class="error-title">Commande annulée</div>
-    <div class="error-desc">Vous devez être connecté pour commander.<br>Connectez-vous ou créez un compte.</div>
-  </div>
-</div>
     <div class="error-title">Commande annulée</div>
     <div class="error-desc">Vous devez être connecté pour commander.<br>Connectez-vous ou créez un compte.</div>
   </div>
