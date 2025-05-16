@@ -1951,37 +1951,61 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-        // Bloquer la commande sans compte sur tous les boutons WhatsApp
+  // ...existing code...
+
+// Déclare le modal produit et la fonction closeModal globalement
+const modal = document.getElementById('product-modal');
+function closeModal() {
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+}
+
+
+
+// Fonction pour afficher le popup d'erreur
+function showErrorPopup() {
+  closeModal();
+  setTimeout(() => {
+    const popup = document.getElementById('error-popup');
+    popup.style.display = 'flex';
+    const authModal = document.getElementById('auth-modal');
+    if (authModal) authModal.classList.add('active');
+    setTimeout(() => {
+      popup.style.display = 'none';
+    }, 3000);
+  }, 150);
+}
+
+// Bloquer la commande sans compte sur tous les boutons WhatsApp (hors modal)
 document.querySelectorAll('.whatsapp-btn').forEach(btn => {
   btn.addEventListener('click', function(e) {
     const user = localStorage.getItem('user');
     if (!user) {
       e.preventDefault();
-      // Fermer le modal produit d'abord
-        function closeModal() {
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
-}
-      if (typeof closeModal === "function") closeModal();
-      // Attendre 150ms pour que le modal soit bien fermé avant d'afficher le popup
-      setTimeout(() => {
-        // Afficher le popup animé
-        const popup = document.getElementById('error-popup');
-        popup.style.display = 'flex';
-        // Ouvre la modale d'auth
-        const authModal = document.getElementById('auth-modal');
-        if (authModal) authModal.classList.add('active');
-        // Masquer le popup après 2,5 secondes
-        setTimeout(() => {
-          popup.style.display = 'none';
-        }, 3000);
-      }, 150);
+      showErrorPopup();
       return false;
     }
   });
 });
 
+// Bloquer aussi sur le bouton WhatsApp du modal produit
+const modalWhatsapp = document.getElementById('modal-whatsapp');
+if (modalWhatsapp) {
+  modalWhatsapp.addEventListener('click', function(e) {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      e.preventDefault();
+      showErrorPopup();
+      return false;
+    }
+  });
+}
 
+// ...existing code...
+
+// ...existing code...
          // Filter products by category
          document.querySelectorAll('.filter-btn').forEach(button => {
             button.addEventListener('click', function() {
