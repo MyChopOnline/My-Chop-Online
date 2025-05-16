@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos de nous - My Chop Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="4.css">
+    <style>
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-10px) translateX(5px);
+            }
+        }
+        
+        @keyframes writing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        
+        .writing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #1e40af;
+            animation: writing 2s steps(20) 1s forwards;
+        }
+        
+      
+        
+        .scroll-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+       
+    </style>
+     <header class="bg-white shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="index.html" class="flex items-center">
+                    <img src="online.png" alt="My Chop Online Logo" class="h-10 w-auto mr-2" />
+                </a>
+                <a href="index.html" class="text-xl font-bold text-blue-700 ml-2">My Chop<span class="text-blue-400">Online</span></a>
+            </div>
+            <div class="relative mr-4 w-full max-w-xs">
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="gd.html" class="text-green-600 font-medium">Accueil</a>
+                <a href="products.html" class="text-gray-700 hover:text-green-600">Produits</a>
+                <a href="about.html" class="text-gray-700 hover:text-green-600">À propos</a>
+                <a href="index.html#contact" class="text-gray-700 hover:text-green-600">Contact</a>
+            </nav>
+        </div>
+          
+    </header>
+</head>
+<section class="bg-gradient-to-r from-green-600 to-blue-800 py-12 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">“Bienvenue sur Chop Online – Vos produits préférés, 100% Mal</h1>
+            <h2>“Livraison partout au Mali</h2>
+            <h2 class="text-2xl md:text-3xl font-semibold mb-6">Commandez facilement via WhatsApp</h2>           
+        </div>
+    </section>
+  <a href="products"> <div class="flex items-center justify-center mt-8">
+        <div class="relative group">
+            <button
+                class="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95"
+            >
+                <span
+                    class="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                ></span>
+                <span class="relative z-10 block px-6 py-3 rounded-xl bg-gray-950">
+                    <div class="relative z-10 flex items-center space-x-2">
+                        <span class="transition-all duration-500 group-hover:translate-x-1"
+                            >Let's get started</span
+                        >
+                        <svg
+                            class="w-6 h-6 transition-transform duration-500 group-hover:translate-x-1"
+                            data-slot="icon"
+                            aria-hidden="true"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                clip-rule="evenodd"
+                                d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+                                fill-rule="evenodd"
+                            ></path>
+                        </svg>
+                    </div>
+                </span>
+            </button>
+        </div>
+    </div></a> 
+  <section class="bg-white py-16 px-6 md:px-12 shadow-lg rounded-lg max-w-5xl mx-auto my-12">
+  <div class="text-center">
+    <h2
+      id="aboutTitle"
+      class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+    >
+      À propos de nous
+    </h2>
+    <p
+      id="aboutText"
+      class="text-lg text-gray-600 mb-6 opacity-0 translate-y-8 transition-all duration-700 ease-out delay-150"
+    >
+      Nous sommes <span class="font-semibold text-blue-600">Chop Online</span>, une boutique en ligne 100% malienne.
+      Tous vos produits essentiels – de la maison à l'alimentation – livrés directement chez vous, partout au Mali.
+      Achetez local, soutenez local 🇲🇱.
+    </p>
+    <a
+      href="/about.html"
+      class="inline-block bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-2 rounded-md hover:from-blue-700 hover:to-blue-600 shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+    >
+      En savoir plus
+    </a>
+  </div>
+</section>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const title = document.getElementById('aboutTitle');
+    const text = document.getElementById('aboutText');
+    // Lancer l'animation d'apparition
+    setTimeout(() => {
+      title.classList.remove('opacity-0', 'translate-y-8');
+      title.classList.add('opacity-100', 'translate-y-0');
+    }, 300);
+    setTimeout(() => {
+      text.classList.remove('opacity-0', 'translate-y-8');
+      text.classList.add('opacity-100', 'translate-y-0');
+    }, 600);
+  });
+</script>
+</div>
+<!-- Section Produits Vedettes -->
+<section class="bg-gray-50 py-16 px-6 md:px-12">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center">Nos produits vedettes</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+     <!-- Produit 1 corrigé -->
+<div onclick="openModal(
+  '4 in 1 Rechargeable Shaver',
+  'https://global2019-static-cdn.kikuu.com/k-s-oss-1713449182403Y3nCJYxaRi.jpg',
+  '4 In 1 Rechargeable Shaver Shaving Machine Hair Clipper Nose Hair Trimmer Face Brush Waterproof for Men-USB Plug.',
+  '12 000 FCFA')"
+  class="cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition">
+  
+  <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1713449182403Y3nCJYxaRi.jpg" alt="Shaver" class="w-full h-48 object-cover">
+  
+  <div class="p-4">
+    <h3 class="font-semibold text-lg">4 In 1 Rechargeable Shaver</h3>
+    <p class="text-blue-600 font-bold">12 000 FCFA</p>
+  </div>
+</div>
+
+
+      <!-- Produit 2 -->
+     <div onclick="openModal(
+  '24 Pairs Silver Earrings',
+  'https://global2019-static-cdn.kikuu.com/upload-productImg-1497968242366.jpeg',
+  '24 Pairs Silver Earrings Cross Heart Star Flower Different Shapes Ear Stud Earrings For Women Men Fashion Jewelry Wholesale',
+  '2 500 FCFA')"
+  class="cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition">
+  
+  <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-1497968242366.jpeg" alt="Riz local" class="w-full h-48 object-cover">
+  
+  <div class="p-4">
+    <h3 class="font-semibold text-lg">24 Pairs Silver Earrings</h3>
+    <p class="text-blue-600 font-bold">2 500 FCFA</p>
+  </div>
+</div>
+
+      <!-- Produit 3 -->
+      <div onclick="openModal('Carte Memoire 512G','https://global2019-static-cdn.kikuu.com/k-s-oss-1677318796708hsxkZceFMM.jpg', ' USB drive Micro SD Micro SDHC Micro SD Class 10 UHS-1 TF Memory Card', '4 500 FCFA')"
+        class="cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition">
+        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1677318796708hsxkZceFMM.jpg" alt="Tissu Bazin" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">HUAWEI High Speed 512G</h3>
+          <p class="text-blue-600 font-bold">4 500 FCFA</p>
+        </div>
+      </div>
+
+      <!-- Produit 4 -->
+      <div onclick="openModal('Support de Smartphone à 2 500f CFA', 'https://global2019-static-cdn.kikuu.com/upload-productImg-1639044369041.jpeg', '360° Rotatable Metal Flower Magic Suction Cup Mobile Phone Holder Car Bracket Mount', '2 500 FCFA')"
+        class="cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition">
+        <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-1639044369041.jpeg" alt="Savon Karité" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">
+New Five claws Sucker Stand for Cell Phone</h3>
+          <p class="text-blue-600 font-bold">2 500 FCFA</p>
+        </div>
+      </div>
+
+      <!-- Produit 5 -->
+      <div onclick="openModal('Gaming Casque Audio', 'https://global2019-static-cdn.kikuu.com/upload-productImg-1613033384807.jpeg', 'Gamer Headphones with Mic PC Professional Gaming Headset USB Wired Headphones Surround Sound Stereo for PUBG XBOX PS4 Game', '15 000 FCFA')"
+        class="cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition">
+        <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-1613033384807.jpeg" alt="Ventilateur" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">Gamer Headphones with Mic PC</h3>
+          <p class="text-blue-600 font-bold">15 000 FCFA</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MODALE -->
+<!-- Modal -->
+<div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50" data-categorye="electronics">
+  <div class="bg-white rounded-lg overflow-hidden shadow-lg max-w-md w-full">
+    <img id="modalImage" src="" alt="" class="w-full max-h-[500px] object-contain">
+    <div class="p-4">
+      <h3 id="modalTitle" class="text-xl font-semibold mb-2"></h3>
+      <p id="modalDescription" class="text-gray-600 mb-2"></p>
+      <p id="modalPrice" class="text-blue-600 font-bold text-lg mb-4"></p>
+      
+      <!-- Bouton WhatsApp -->
+      <a id="whatsappBtn" href="#" target="_blank"
+         class="block w-full text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded mb-3 transition">
+        Commander sur WhatsApp
+      </a>
+
+      <button onclick="closeModal()"
+              class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+        Fermer
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- JS -->
+<script>
+  function openModal(title, imageUrl, description, price) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalImage').src = imageUrl;
+    document.getElementById('modalDescription').textContent = description;
+    document.getElementById('modalPrice').textContent = price;
+
+    const whatsappLink = `https://wa.me/22376443079?text=Bonjour, je suis intéressé(e) par le produit "${title}" à ${price}.`;
+    document.getElementById('whatsappBtn').href = whatsappLink;
+
+    document.getElementById('productModal').classList.remove('hidden');
+  }
+
+  function closeModal() {
+    document.getElementById('productModal').classList.add('hidden');
+  }
+</script>
+
+
+
+<!-- Animation -->
+
+<body class="font-sans antialiased bg-gray-50">
+    <!-- Navigation -->
+       <div class="Pagination">
+                <a href="index.html"class="active1">1</a>
+                <a href="products.html">2</a>
+                <a href="page2.html">3</a>
+                <a href="products.html.html" class="NEXT">>>NEXT</a>
+            </div>
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative parchemin">
+                <div class="tag">My Chop Online</div>
+                <h2 class="text-3xl font-bold text-blue-800 mb-8 writing-text" style="width: 0;">À propos de nous</h2>
+                <div class="text-gray-800 text-lg leading-relaxed">
+                    <p class="mb-4">Bienvenue sur notre boutique en ligne 100% dédiée au Mali !</p>
+                    <p class="mb-4">Notre mission est simple : vous proposer des produits de qualité, sélectionnés avec soin, accessibles partout au Mali, à des prix compétitifs. Que ce soit pour vos besoins du quotidien ou pour des articles plus spécifiques, nous sommes là pour vous servir.</p>
+                    <p class="mb-4">Nous tenons à préciser que nos ventes sont exclusivement réservées au territoire malien. Cela nous permet de mieux gérer nos services et d'assurer un suivi plus personnalisé de chaque commande.</p>
+                    <p class="mb-4">La livraison est disponible dans tout le pays. Toutefois, selon votre localisation et la nature du produit, les délais peuvent varier légèrement. Soyez assurés que nous faisons toujours notre maximum pour que vos commandes vous parviennent dans les meilleurs délais.</p>
+                    <p class="mb-4">Merci pour votre confiance et pour faire partie de notre communauté grandissante !</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="products.html">
+       <button href="#" class="button" style="--clr: #7808d0">
+<span class="button__icon-wrapper">
+    <svg
+        viewBox="0 0 14 15"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="button__icon-svg"
+        width="10"
+    >
+        <path
+            d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+            fill="currentColor"
+        ></path>
+    </svg>
+
+    <svg
+        viewBox="0 0 14 15"
+        fill="none"
+        width="10"
+        xmlns="http://www.w3.org/2000/svg"
+        class="button__icon-svg button__icon-svg--copy"
+    >
+        <path
+            d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+            fill="currentColor"
+        ></path>
+    </svg>
+</span>
+  Explore All
+</button>
+
+    </a>
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-blue-800 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Paiement Sécurisé</h3>
+                    <p class="text-gray-600">Transactions 100% sécurisées pour une expérience d'achat en toute confiance.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-blue-800 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-truck text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Livraison Partout</h3>
+                    <p class="text-gray-600">Service de livraison disponible dans tout le Mali.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-blue-800 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-headset text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Support Client</h3>
+                    <p class="text-gray-600">Notre équipe est disponible pour répondre à toutes vos questions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("sByJIebIVUsh9jfP5");
+    })();
+  </script>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center px-4">
+
+  <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md mx-auto">
+    <h2 class="text-2xl font-bold text-center mb-6">Contactez-nous</h2>
+    
+    <form id="contactForm" class="space-y-4">
+      <!-- Anti-spam honeypot -->
+      <input type="text" name="bot_check" style="display:none;" />
+
+      <input type="text" name="user_name" placeholder="Votre nom" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+      
+      <input type="email" name="user_email" placeholder="Votre e-mail" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+
+      <input type="text" name="subject" placeholder="Sujet" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+
+      <textarea name="message" rows="5" placeholder="Votre message" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+      
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition duration-200">
+        Envoyer
+      </button>
+    </form>
+
+    <!-- Message de confirmation -->
+    <div id="successMessage" class="hidden flex flex-col items-center mt-6 text-green-600">
+      <svg class="w-16 h-16 mb-2 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+      </svg>
+      <p class="text-center font-semibold">Message envoyé avec succès !</p>
+    </div>
+
+    <!-- Message d'erreur -->
+    <p id="errorMessage" class="text-center text-red-600 font-semibold mt-4 hidden">Erreur lors de l’envoi. Veuillez réessayer.</p>
+  </div>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      if (this.bot_check.value !== "") {
+        console.warn("Bot détecté !");
+        return;
+      }
+
+      emailjs.sendForm('service_gowueki', 'template_62dv73p', this)
+        .then(function () {
+          document.getElementById("contactForm").reset();
+          document.getElementById("successMessage").classList.remove("hidden");
+          document.getElementById("errorMessage").classList.add("hidden");
+        }, function (error) {
+          console.error('Erreur EmailJS :', error);
+          document.getElementById("errorMessage").classList.remove("hidden");
+          document.getElementById("successMessage").classList.add("hidden");
+        });
+    });
+  </script>
+</body>
+</body>
+    
+
+    <!-- Message de confirmation -->
+    <div id="successMessage" class="hidden flex flex-col items-center mt-6 text-green-600">
+      <svg class="w-16 h-16 mb-2 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+      </svg>
+      <p class="text-center font-semibold">Message envoyé avec succès !</p>
+    </div>
+
+    <!-- Message d'erreur -->
+    <p id="errorMessage" class="text-center text-red-600 font-semibold mt-4 hidden">Erreur lors de l’envoi. Veuillez réessayer.</p>
+  </div>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Anti-spam honeypot
+      if (this.bot_check.value !== "") {
+        console.warn("Bot détecté !");
+        return;
+      }
+
+      emailjs.sendForm('service_gowueki', 'template_62dv73p', this)
+        .then(function () {
+          document.getElementById("contactForm").reset();
+          document.getElementById("successMessage").classList.remove("hidden");
+          document.getElementById("errorMessage").classList.add("hidden");
+        }, function (error) {
+          console.error('Erreur EmailJS :', error);
+          document.getElementById("errorMessage").classList.remove("hidden");
+          document.getElementById("successMessage").classList.add("hidden");
+        });
+    });
+  </script>
+   
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <span class="country-flag"></span>
+                          <a href="index.html" class="flex items-center">
+                    <img src="online.png" alt="My Chop Online Logo" class="h-10 w-auto mr-2" />
+                </a>
+                <a href="index.html" class="text-xl font-bold text-blue-700 ml-2">My Chop<span class="text-blue-400">Online</span></a>
+                    </div>
+                    <p class="text-gray-400">
+                        La solution e-commerce adaptée au Mali. Achetez facilement via WhatsApp.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4" style="margin-left: 45px;">Liens rapides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white">Produits</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white" target="blank">À propos</a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Suivez-nous</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/profile.php?viewas=100000686899395&id=61575170172808" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                        <a href="https://youtube.com/@mychoponline?si=ntDz5F-jKU1TTvNV" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-youtube"></i></a>
+                        <a href="https://x.com/mychoponline" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-400">Téléphone:</p>
+                        <p class="font-medium">+223 76-44-30-79</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 mychoponline. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const feather = document.getElementById('feather');
+            const aboutSection = document.getElementById('about');
+            
+            // Initial feather position
+            let featherPosition = 20;
+            
+            // Handle scroll animation
+            function handleScroll() {
+                const scrollPosition = window.scrollY;
+                const aboutSectionTop = aboutSection.offsetTop;
+                const windowHeight = window.innerHeight;
+                
+                // Calculate feather position based on scroll
+                if (scrollPosition < aboutSectionTop - windowHeight) {
+            ""        // Feat""her is floating"" above the about se""ction
+                    featherPosition = 20 + (scrollPosition / 10);
+                    feather.style.top = featherPosition + '%';
+                    
+                    // Random slight horizontal movement
+                    const randomX = Math.sin(scrollPosition / 100) * 10;
+                    feather.style.left = `calc(50% + ${randomX}px)`;
+                    
+                    // Remove landed class if it exists
+                    feather.classList.remove('feather-landed');
+                    feather.style.animation = 'float 3s ease-in-out infinite';
+                } else {
+                    // Feather has reached the about section
+                    feather.classList.add('feather-landed');
+                    feather.style.animation = 'none';
+                }
+            }
+            
+            // Initial call
+            handleScroll();
+            
+            // Listen to scroll events
+            window.addEventListener('scroll', handleScroll);
+            
+            // Trigger writing animation when about section is in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelector('.writing-text').style.animation = 'writing 2s steps(20) 1s forwards';
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(aboutSection);
+        });
+    </script>
+</html>
