@@ -190,25 +190,50 @@
         }
 </style>
     </style>
-     <header class="bg-white shadow-md sticky top-0 z-40">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <a href="index.html" class="flex items-center">
-                  <img src="online.png" alt="My Chop Online Logo" class="h-10 w-auto mr-2" />
-                <a href="index.html" class="text-xl font-bold text-blue-700 ml-2">My Chop<span class="text-blue-400">Online</span></a>
-            </div>
-            <div class="relative mr-4 w-full max-w-xs">
-            </div>
-            <nav class="hidden md:flex space-x-8">
-                <a href="index.html" class="text-green-600 font-medium">Accueil</a>
-                <a href="products.html" class="text-gray-700 hover:text-green-600">Produits</a>
-                <a href="#about" class="text-gray-700 hover:text-green-600">À propos</a>
-                <a href="contactForm" onclick="document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth' }); return false;" class="text-gray-700 hover:text-green-600>Contact</a>
-
-                <a href="contactForm"">Contact</a>
-            </nav>
+    <header class="bg-white shadow-md sticky top-0 z-40">
+      <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <!-- Logo & Brand -->
+        <div class="flex items-center">
+          <a href="index.html" class="flex items-center">
+            <img src="online.png" alt="My Chop Online Logo" class="h-10 w-auto mr-2" />
+            <span class="text-xl font-bold text-blue-700 ml-2">My Chop<span class="text-blue-400">Online</span></span>
+          </a>
         </div>
-          
+        <!-- Hamburger for mobile -->
+        <button id="mobile-menu-btn" class="md:hidden text-2xl text-blue-700 focus:outline-none" aria-label="Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <!-- Navigation -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-green-600 font-medium">Accueil</a>
+          <a href="products.html" class="text-gray-700 hover:text-green-600">Produits</a>
+          <a href="#about" class="text-gray-700 hover:text-green-600">À propos</a>
+          <a href="#contactForm" onclick="document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth' }); return false;" class="text-gray-700 hover:text-green-600">Contact</a>
+        </nav>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
+        <nav class="flex flex-col px-4 py-2 space-y-2">
+          <a href="index.html" class="text-green-600 font-medium py-2">Accueil</a>
+          <a href="products.html" class="text-gray-700 hover:text-green-600 py-2">Produits</a>
+          <a href="#about" class="text-gray-700 hover:text-green-600 py-2">À propos</a>
+          <a href="#contactForm" onclick="document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth' }); return false;" class="text-gray-700 hover:text-green-600 py-2">Contact</a>
+        </nav>
+      </div>
+      <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function () {
+          const btn = document.getElementById('mobile-menu-btn');
+          const menu = document.getElementById('mobile-menu');
+          btn && btn.addEventListener('click', function () {
+            menu.classList.toggle('hidden');
+          });
+          // Optional: close menu on link click
+          menu && menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => menu.classList.add('hidden'));
+          });
+        });
+      </script>
     </header>
      <div id="user-bar" class="user-bar">
         <div class="profile-btn" id="profile-btn">
