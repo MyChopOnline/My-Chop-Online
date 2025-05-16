@@ -3,349 +3,629 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nos Produits - My Chop Online</title>
+    <title>My Chop Online</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="4.css">
     <style>
-        .whatsapp-btn {
-            background-color: #25D366;
-            transition: all 0.3s ease;
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-10px) translateX(5px);
+            }
         }
-        .whatsapp-btn:hover {
-            background-color: #128C7E;
+        
+        @keyframes writing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
         }
-        .country-flag {
-            width: 20px;
-            height: 15px;
-            display: inline-block;
-            background-image: url('https://flagcdn.com/w20/ml.png');
-            background-size: cover;
-            margin-right: 5px;
-            vertical-align: middle;
-        }
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-.filter-btn.active {
-            --color: #560bad;
-  font-family: inherit;
-  display: inline-block;
-  width: 8em;
-  height: 2.6em;
-  line-height: 2.5em;
-  margin: 20px;
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  border: 2px solid var(--color);
-  transition: color 0.5s;
-  z-index: 1;
-  font-size: 17px;
-  border-radius: 6px;
-  font-weight: 500;
-  color: var(--color);
-}
-.filter-btn:before  {
-content: "";
-  position: absolute;
-  z-index: -1;
-  background: var(--color);
-  height: 150px;
-  width: 200px;
-  border-radius: 50%;
- }
- .filter-btn:hover {
-    color: #fff;
- }
-
- .filter-btn:before{
-    top: 100%;
-  left: 100%;
-  transition: all 0.7s;
- }
- .filter-btn:hover:before{
-    top: -30px;
-  left: -30px;
- }
- .filter-btn:active::before{
-background: #3a0ca3;
-  transition: background 0s;
- 
- }
-.auth-modal {
-            display: none;
+        
+        .feather {
             position: fixed;
-            z-index: 50;
-            left: 0;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: #1e40af;
+            animation: float 3s ease-in-out infinite;
+            z-index: 100;
+            transition: all 1s ease;
+        }
+        
+        .feather-landed {
+            animation: none;
+            position: absolute;
+            top: auto;
+            left: 10%;
+            transform: rotate(-15deg);
+        }
+        
+        .writing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #1e40af;
+            animation: writing 2s steps(20) 1s forwards;
+        }
+        
+        .parchemin {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%231e40af" stroke-width="2" stroke-dasharray="5,5"/></svg>');
+            background-size: 30px 30px;
+            position: relative;
+            padding: 2rem;
+            border-radius: 5px;
+        }
+        
+        .parchemin::before {
+            content: "";
+            position: absolute;
             top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 253, 240, 0.8);
+            border-radius: 5px;
+            z-index: -1;
         }
-        .auth-content {
-            animation: modalopen 0.5s;
+        
+        .scroll-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        @keyframes modalopen {
-            from {opacity: 0; transform: translateY(-50px);}
-            to {opacity: 1; transform: translateY(0);}
+        
+        .tag {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #1e40af;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .active2{
-            background-color: #25D366;
-        }
-
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background-color: rgba(0, 0, 0, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-    .alert-box {
-      background: hsl(0, 78%, 53%);
-      border-radius: 10px;
-      padding: 30px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-    .alert-box h2 {
-      font-size: 1.5em;
-      margin-bottom: 10px;
-      color: #ffffff;
-    }
-    .alert-box p {
-      color: #ffffff;
-      font-size: 1em;
-      margin-bottom: 25px;
-    }
-    .alert-box button {
-      background-color: #007BFF;
-      color: hsl(0, 0%, 100%);
-      border: none;
-      border-radius: 8px;
-      padding: 12px 24px;
-      font-size: 1em;
-      cursor: not-allowed;
-      opacity: 0.6;
-      transition: 0.3s;
-    }
-    .alert-box button.enabled {
-      cursor: pointer;
-      opacity: 1;
-    }
     </style>
-</head>
-<body class="bg-gray-50 font-sans">
-    
-    <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-40">
+     <header class="bg-white shadow-md sticky top-0 z-40">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
-                <span class="country-flag"></span>
+                <a href="index.html" class="flex items-center">
+                    <img src="online.png" alt="My Chop Online Logo" class="h-10 w-auto mr-2" />
+                </a>
                 <a href="index.html" class="text-xl font-bold text-blue-700 ml-2">My Chop<span class="text-blue-400">Online</span></a>
             </div>
             <div class="relative mr-4 w-full max-w-xs">
-                <input
-                    type="text"
-                    id="searchInput"
-                    class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 w-full"
-                    placeholder="Rechercher un produit..."
-                >
-                <span class="absolute left-3 top-2.5 text-gray-400">
-                    <i class="fas fa-search"></i>
-                </span>
             </div>
-            <script>
-            // Mapping of English keywords to French equivalents
-            const keywordMap = {
-                'ring': ['bague', 'ring'],
-                'bracelet': ['bracelet'],
-                'necklace': ['collier', 'necklace'],
-                'earring': ['boucle', 'earring'],
-                'watch': ['montre', 'watch'],
-                'bag': ['sac', 'bag'],
-                'phone': ['téléphone', 'smartphone', 'phone'],
-                'headphone': ['écouteur', 'casque', 'headphone', 'earphone'],
-                'sun glasses': ['lunettes', 'sunglasses'],
-                'gold': ['or', 'gold'],
-                'silver': ['argent', 'silver'],
-                // Add more mappings as needed
-            };
-
-            function getAllKeywords(query) {
-                let keywords = [query];
-                for (const [en, frArr] of Object.entries(keywordMap)) {
-                    if (en.includes(query) || frArr.some(f => f.includes(query))) {
-                        keywords = keywords.concat([en, ...frArr]);
-                    }
-                }
-                return Array.from(new Set(keywords));
-            }
-
-            document.getElementById('searchInput').addEventListener('input', function() {
-                const query = this.value.trim().toLowerCase();
-                const keywords = getAllKeywords(query);
-                document.querySelectorAll('.product-card').forEach(card => {
-                    const name = card.querySelector('h3')?.textContent.toLowerCase() || '';
-                    const desc = card.querySelector('p')?.textContent.toLowerCase() || '';
-                    const match = keywords.some(k => name.includes(k) || desc.includes(k));
-                    card.style.display = match || !query ? 'block' : 'none';
-                });
-            });
-            </script>
             <nav class="hidden md:flex space-x-8">
-                <a href="gd.html" class="text-green-600 font-medium">Accueil</a>
+                <a href="index.html" class="text-green-600 font-medium">Accueil</a>
                 <a href="products.html" class="text-gray-700 hover:text-green-600">Produits</a>
-                <a href="about.html" class="text-gray-700 hover:text-green-600">À propos</a>
-                <a href="index.html#contact" class="text-gray-700 hover:text-green-600">Contact</a>
+                <a href="#about" class="text-gray-700 hover:text-green-600">À propos</a>
+                <a href="contactForm" onclick="document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth' }); return false;" class="text-gray-700 hover:text-green-600>Contact</a>
+
+                <a href="contactForm"">Contact</a>
             </nav>
         </div>
-        <div class="overlay" id="alertOverlay">
-            <div class="alert-box">
-              <h2>ℹ️ Livraison flexible</h2>
-              <p>
-                Cher client, veuillez noter que les délais de livraison peuvent varier selon la disponibilité et la localisation.<br>
-                Merci pour votre compréhension et votre confiance.
-              </p>
-              <button id="agreeBtn" disabled>D'accord (5)</button>
-            </div>
-          </div>
           
     </header>
-
-    <!-- Products Hero -->
-    <section class="bg-gradient-to-r from-green-600 to-blue-800 py-12 text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Nos Produits</h1>
-            <p class="text-xl max-w-2xl mx-auto">Découvrez notre sélection exclusive de produits disponibles pour commande via WhatsApp</p>
+</head>
+<section class="bg-gradient-to-r from-green-600 to-blue-800 py-12 text-white">
+        <div class="container mx-auto px-4 text-center" id="about">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">“Bienvenue sur Chop Online – Vos produits préférés, 100% Mali</h1>
+            <h2>“Livraison partout au Mali</h2>
+            <h2 class="text-2xl md:text-3xl font-semibold mb-6">Commandez facilement via WhatsApp</h2>           
         </div>
     </section>
-
-    <!-- Products Filter -->
-    <section class="py-6 bg-violet-300 shadow-sm">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h2 class="text-xl font-semibold text-gray-800">Filtrer par catégorie</h2>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                    <button class="filter-btn px-0 py-0 rounded-full border border-blue-300 hover:bg-blue-100 active" data-category="all">All
-                </div>
-            </div>
+    
+  <a href="#abbout"> <div class="flex items-center justify-center mt-8">
+        <div class="relative group">
+            <button
+                class="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95"
+            >
+                <span
+                    class="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                ></span>
+                <span class="relative z-10 block px-6 py-3 rounded-xl bg-gray-950">
+                    <div class="relative z-10 flex items-center space-x-2">
+                        <span class="transition-all duration-500 group-hover:translate-x-1"
+                            >Let's get started</span
+                        >
+                        <svg
+                            class="w-6 h-6 transition-transform duration-500 group-hover:translate-x-1"
+                            data-slot="icon"
+                            aria-hidden="true"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                clip-rule="evenodd"
+                                d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+                                fill-rule="evenodd"
+                            ></path>
+                        </svg>
+                    </div>
+                </span>
+            </button>
         </div>
-    </section>
+    </div></a> 
+    <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loader Exemple</title>
+  <style>
+    /* Style de fond de la page (requis car le texte du loader est transparent) */
+    body {
+      background-color: white;
+      margin: 0;
+      padding: 0;
+    }
 
-    <!-- Products Grid -->
-    <section class="py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="products-grid">
-               <!-- Product 1 -->
-<!-- Product 1 -->
-<div class="bg-white-400 rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
-    <div class="relative">
-      <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-1529671211428.jpeg" alt="Montre connectée" class="w-full h-48 object-cover">
-    </div>
-    <div class="p-4">
-      <div class="flex justify-between items-start mb-1">
-        <h3 class="font-bold text-lg">Femmes Argent/or</h3>
-        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
-      </div>
-      <p class="text-gray-600 text-sm mb-2">Couleur Cubique Zircone Collier Musulman Religieux Bijoux</p>
-      <div class="flex justify-between items-center mt-4">
-        <span class="font-bold text-green-600">3,000 FCFA</span>
-        <a href="https://wa.me/22376443079?text=Je%20souhaite%20commander%20les%colliers%20musulman%20religieux%20bijoux%20fil%20-3000%20FCFA" class="px-3 py-1 bg-green-100 text-green-400 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
-            <i class="fab fa-whatsapp mr-1"></i> Commander
-        </a>
-      </div>
+    /* Conteneur du loader en plein écran */
+    #loader-wrapper {
+      position: fixed;
+      inset: 0;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    #loader-wrapper.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* TON CSS EXISTANT POUR LE LOADER (extrait simplifié ici) */
+    .loader {
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .loader span {
+      animation: hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1);
+      transform: translateY(4rem);
+    }
+
+    .loader .l { animation-delay: 0s; }
+    .loader .o { animation-delay: 0.07s; }
+    .loader .a { animation-delay: 0.14s; }
+    .loader .d { animation-delay: 0.21s; }
+    .loader .ispan { animation-delay: 0.28s; }
+    .loader .n { animation-delay: 0.35s; }
+    .loader .g { animation-delay: 0.42s; }
+
+    @keyframes hideAndSeek {
+      0% { transform: translateY(4rem); }
+      100% { transform: translateY(0rem); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Conteneur du loader -->
+  <div id="loader-wrapper">
+    <div class="loader">
+      <span class="l">L</span>
+      <span class="o">O</span>
+      <span class="a">A</span>
+      <span class="d">D</span>
+      <span class="ispan">I</span>
+      <span class="n">N</span>
+      <span class="g">G</span>
     </div>
   </div>
-  
 
-<!-- Product 2 -->
-<div class="bg-white-400 rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
-    <div class="relative">
-        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1681781992297RXXYaXkK8J.jpg" alt="Smartphone" class="w-full h-48 object-cover">
-    </div>
-    <div class="p-4">
-        <div class="flex justify-between items-start mb-1">
-            <h3 class="font-bold text-lg">Écouteurs stéréo casque sans fil</h3>
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
-        </div>
-        <p class="text-gray-600 text-sm mb-2">avec micro lunettes polarisées lunettes de soleil pour la conduite cyclisme sport réduction du bruit casque</p>
-        <div class="flex justify-between items-center mt-4">
-            <span class="font-bold text-green-600">6,500 FCFA</span>
-            <a href="https://wa.me/22376443079?text=Je%20souhaite%20commander%20les%20écouteurs%20stéréo%20casque%20sans%20fil%20-%20avec%20micro%20lunettes%20polares%20lunettes%20de%20soleil%20pour%20la%20conduite%20cyclisme%20sport%20réduction%20du%20bruit%20-%206,500%20FCFA" class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
-                <i class="fab fa-whatsapp mr-1"></i> Commander
-            </a>
-        </div>
-    </div>
-</div>
+  <!-- Ton contenu principal -->
+  <!-- JavaScript pour cacher le loader après 3 secondes -->
+  <script>
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("loader-wrapper").classList.add("hidden");
+      }, 3000);
+    });
+  </script>
 
-<!-- Product 3 -->
-<div class="bg-white-400 rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="electronics">
-    <div class="relative">
-        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1725855895989M3Wm48HsQ5.jpg" alt="Télévision" class="w-full h-48 object-cover">
-        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Promo</span>
-    </div>
-    <div class="p-4">
-        <div class="flex justify-between items-start mb-1">
-            <h3 class="font-bold text-lg">S24 Ultra Smartphone 5G</h3>
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
-        </div>
-        <p class="text-gray-600 text-sm mb-2">7.3 pouces Écran 16GB + 1TB 50MP + 108MP 8000mAh Double SIM Reconnaissance de Visage Version Globale Android Mobile Téléphone</p>
-        <div class="flex justify-between items-center mt-4">
-            <div>
-                <span class="font-bold text-green-600">56,000 FCFA</span>
-                <span class="text-xs text-red-500 line-through ml-2">25,000 FCFA</span>
-            </div>
-            <a href="https://wa.me/22376443079?text=Je%20souhaite%20commander%20le%20smartphone%20S24%20Ultra%205G%20-%207.3%20pouces%20Écran%20-%2016GB%20+%201TB%20-%2056,000%20FCFA" class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
-                <i class="fab fa-whatsapp mr-1"></i> Commander
-            </a>
-        </div>
-    </div>
-</div>
+</body>
+</html>
 
-<!-- Product 4 -->
-<div class="bg-white-400 rounded-lg overflow-hidden shadow-md product-card transition-all duration-300" data-category="mode">
-    <div class="relative">
-        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1741952592252cfHxMaEYya.jpg" alt="Sac" class="w-full h-48 object-cover">
-    </div>
-    <div class="p-4">
-        <div class="flex justify-between items-start mb-1">
-            <h3 class="font-bold text-lg">Litchi motif quatre pièces ensemble</h3>
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">En stock</span>
-        </div>
-        <p class="text-gray-600 text-sm mb-2">à la mode et simple Européen et Américain polyvalent sac à main, grande capacité femmes sac</p>
-        <div class="flex justify-between items-center mt-4">
-            <span class="font-bold text-green-600">15,000 FCFA</span>
-            <a href="https://wa.me/22376443079?text=Je%20souhaite%20commander%20motifs%20quatre pièces,15,000%20FCFA" class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green-200 whatsapp-btn">
-                <i class="fab fa-whatsapp mr-1"></i> Commander
-            </a> 
-        </div>
-    </div>
-</div>
-    </section>
-    <!--WhatsApp Float Button -->
-    <a href="https://wa.me/22376443079" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-50">
-        <i class="fab fa-whatsapp text-2xl"></i>
+    
+  <section class="bg-white py-16 px-6 md:px-12 shadow-lg rounded-lg max-w-5xl mx-auto my-12">
+  <div class="text-center">
+    <h2
+      id="aboutTitle"
+      class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+    >
+      À propos de nous
+    </h2>
+    <p
+      id="aboutText"
+      class="text-lg text-gray-600 mb-6 opacity-0 translate-y-8 transition-all duration-700 ease-out delay-150" id="ab">
+      Nous sommes <span class="font-semibold text-blue-600">Chop Online</span>, une boutique en ligne 100% malienne.
+      Tous vos produits essentiels – de la maison à l'alimentation – livrés directement chez vous, partout au Mali.
+      Achetez local, soutenez local 🇲🇱.
+    </p>
+    <a
+      href="#abbout"
+      class="inline-block bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-2 rounded-md hover:from-blue-700 hover:to-blue-600 shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+    >
+      En savoir plus
     </a>
-        </div>
-<!-- From Uiverse.io by barisdogansutcu --> 
-<a href="products.html" class="but"><button class="but">Voir plus</button></a>
+  </div>
+</section>
 
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const title = document.getElementById('aboutTitle');
+    const text = document.getElementById('aboutText');
+    // Lancer l'animation d'apparition
+    setTimeout(() => {
+      title.classList.remove('opacity-0', 'translate-y-8');
+      title.classList.add('opacity-100', 'translate-y-0');
+    }, 300);
+    setTimeout(() => {
+      text.classList.remove('opacity-0', 'translate-y-8');
+      text.classList.add('opacity-100', 'translate-y-0');
+    }, 600);
+  });
+</script>
+</div>
+<!-- Section Produits Vedettes -->
+<section class="bg-gray-50 py-16 px-6 md:px-12">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center">Nos produits vedettes</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+     <!-- Produit 1 corrigé -->
+<div onclick="openModal(
+  '4 in 1 Rechargeable Shaver',
+  'https://global2019-static-cdn.kikuu.com/k-s-oss-1713449182403Y3nCJYxaRi.jpg',
+  '4 In 1 Rechargeable Shaver Shaving Machine Hair Clipper Nose Hair Trimmer Face Brush Waterproof for Men-USB Plug.',
+  '12 000 FCFA')"
+  class="cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition">
+  
+  <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1713449182403Y3nCJYxaRi.jpg" alt="Shaver" class="w-full h-48 object-cover">
+  
+  <div class="p-4">
+    <h3 class="font-semibold text-lg">4 In 1 Rechargeable Shaver</h3>
+    <p class="text-blue-600 font-bold">12 000 FCFA</p>
+  </div>
+</div>
+
+
+      <!-- Produit 2 -->
+     <div onclick="openModal(
+  '24 Pairs Silver Earrings',
+  'https://global2019-static-cdn.kikuu.com/upload-productImg-1497968242366.jpeg',
+  '24 Pairs Silver Earrings Cross Heart Star Flower Different Shapes Ear Stud Earrings For Women Men Fashion Jewelry Wholesale',
+  '2 500 FCFA')"
+  class="cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition">
+  
+  <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-1497968242366.jpeg" alt="Riz local" class="w-full h-48 object-cover">
+  
+  <div class="p-4">
+    <h3 class="font-semibold text-lg">24 Pairs Silver Earrings</h3>
+    <p class="text-blue-600 font-bold">2 500 FCFA</p>
+  </div>
+</div>
+
+      <!-- Produit 3 -->
+      <div onclick="openModal('Carte Memoire','https://global2019-static-cdn.kikuu.com/k-s-oss-1677318796708hsxkZceFMM.jpg', ' USB drive Micro SD Micro SDHC Micro SD Class 10 UHS-1 TF Memory Card', '4 500 FCFA')"
+        class="cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition">
+        <img src="https://global2019-static-cdn.kikuu.com/k-s-oss-1677318796708hsxkZceFMM.jpg" alt="Tissu Bazin" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">HUAWEI High Speed 512G</h3>
+          <p class="text-blue-600 font-bold">4 500 FCFA</p>
+        </div>
+      </div>
+
+      <!-- Produit 4 -->
+      <div onclick="openModal('Support de Smartphone à 2 500f CFA', 'https://global2019-static-cdn.kikuu.com/upload-productImg-1639044369041.jpeg', '360° Rotatable Metal Flower Magic Suction Cup Mobile Phone Holder Car Bracket Mount', '2 500 FCFA')"
+        class="cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition">
+        <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-1639044369041.jpeg" alt="Savon Karité" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">
+New Five claws Sucker Stand for Cell Phone</h3>
+          <p class="text-blue-600 font-bold">2 500 FCFA</p>
+        </div>
+      </div>
+
+      <!-- Produit 5 -->
+      <div onclick="openModal('Gaming Casque Audio', 'https://global2019-static-cdn.kikuu.com/upload-productImg-1613033384807.jpeg', 'Gamer Headphones with Mic PC Professional Gaming Headset USB Wired Headphones Surround Sound Stereo for PUBG XBOX PS4 Game', '15 000 FCFA')"
+        class="cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition">
+        <img src="https://global2019-static-cdn.kikuu.com/upload-productImg-1613033384807.jpeg" alt="Ventilateur" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">Gamer Headphones with Mic PC</h3>
+          <p class="text-blue-600 font-bold">15 000 FCFA</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-6  shadow-sm bg-blue-300">
+  <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+              <h2 class="text-xl font-semibold text-gray-800">Nos Produits</h2>
+          </div>
+          <!-- From Uiverse.io by satyamchaudharydev --> 
+          </div>
+      </div>
+  </div>
+</section>
+<div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50" data-categorye="electronics">
+  <div class="bg-white rounded-lg overflow-hidden shadow-lg max-w-md w-full">
+    <img id="modalImage" src="" alt="" class="w-full max-h-[500px] object-contain">
+    <div class="p-4">
+      <h3 id="modalTitle" class="text-xl font-semibold mb-2"></h3>
+      <p id="modalDescription" class="text-gray-600 mb-2"></p>
+      <p id="modalPrice" class="text-blue-600 font-bold text-lg mb-4"></p>
+      
+      <!-- Bouton WhatsApp -->
+      <a id="whatsappBtn" href="#" target="_blank"
+         class="block w-full text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded mb-3 transition">
+        Commander sur WhatsApp
+      </a>
+
+      <button onclick="closeModal()"
+              class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+        Fermer
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- JS -->
+<script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("loader-container").classList.add("hidden");
+    }, 3000);
+  });
+
+  function openModal(title, imageUrl, description, price) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalImage').src = imageUrl;
+    document.getElementById('modalDescription').textContent = description;
+    document.getElementById('modalPrice').textContent = price;
+
+    const whatsappLink = `https://wa.me/22376443079?text=Bonjour, je suis intéressé(e) par le produit "${title}" à ${price}.`;
+    document.getElementById('whatsappBtn').href = whatsappLink;
+
+    document.getElementById('productModal').classList.remove('hidden');
+  }
+
+  function closeModal() {
+    document.getElementById('productModal').classList.add('hidden');
+  }
+</script>
+
+
+
+<!-- Animation -->
+<style>
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<body class="font-sans antialiased bg-gray-50">
+    <!-- Navigation -->
+    
+
+    <!-- Feather Animation -->
+    <div id="feather" class="feather">
+        <i class="fas fa-feather-alt"></i>
+    </div>
+
+    <!-- Empty scroll section for feather animation -->
+    <div class="scroll-section"></div>
+
+    <!-- About Section -->
+    <section id="abbout" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative parchemin">
+                <div class="tag">My Chop Online</div>
+                <h2 class="text-3xl font-bold text-blue-800 mb-8 writing-text" style="width: 0;">À propos de nous</h2>
+                <div class="text-gray-800 text-lg leading-relaxed">
+                    <p class="mb-4">Bienvenue sur notre boutique en ligne 100% dédiée au Mali !</p>
+                    <p class="mb-4">Notre mission est simple : vous proposer des produits de qualité, sélectionnés avec soin, accessibles partout au Mali, à des prix compétitifs. Que ce soit pour vos besoins du quotidien ou pour des articles plus spécifiques, nous sommes là pour vous servir.</p>
+                    <p class="mb-4">Nous tenons à préciser que nos ventes sont exclusivement réservées au territoire malien. Cela nous permet de mieux gérer nos services et d'assurer un suivi plus personnalisé de chaque commande.</p>
+                    <p class="mb-4">La livraison est disponible dans tout le pays. Toutefois, selon votre localisation et la nature du produit, les délais peuvent varier légèrement. Soyez assurés que nous faisons toujours notre maximum pour que vos commandes vous parviennent dans les meilleurs délais.</p>
+                    <p class="mb-4">Merci pour votre confiance et pour faire partie de notre communauté grandissante !</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="products.html"><button href="#" class="button" style="--clr: #7808d0">
+      <span class="button__icon-wrapper">
+          <svg
+              viewBox="0 0 14 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="button__icon-svg"
+              width="10"
+          >
+              <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"
+              ></path>
+          </svg>
+      
+          <svg
+              viewBox="0 0 14 15"
+              fill="none"
+              width="10"
+              xmlns="http://www.w3.org/2000/svg"
+              class="button__icon-svg button__icon-svg--copy"
+          >
+              <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"
+              ></path>
+          </svg>
+      </span>
+        Explore All
+      </button></a>
+     
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-blue-800 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Paiement Sécurisé</h3>
+                    <p class="text-gray-600">Transactions 100% sécurisées pour une expérience d'achat en toute confiance.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-blue-800 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-truck text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Livraison Partout</h3>
+                    <p class="text-gray-600">Service de livraison disponible dans tout le Mali.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-blue-800 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-headset text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Support Client</h3>
+                    <p class="text-gray-600">Notre équipe est disponible pour répondre à toutes vos questions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("sByJIebIVUsh9jfP5");
+    })();
+  </script>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center px-4">
+
+  <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md mx-auto">
+    <h2 class="text-2xl font-bold text-center mb-6">Contactez-nous</h2>
+    
+    <form id="contactForm"  class="space-y-4">
+      <!-- Anti-spam honeypot -->
+      <input type="text" name="bot_check" style="display:none;" />
+
+      <input type="text" name="user_name" placeholder="Votre nom" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+      
+      <input type="email" name="user_email" placeholder="Votre e-mail" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+
+      <input type="text" name="subject" placeholder="Sujet" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+
+      <textarea name="message" rows="5" placeholder="Votre message" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+      
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition duration-200">
+        Envoyer
+      </button>
+    </form>
+
+    <!-- Message de confirmation -->
+    <div id="successMessage" class="hidden flex flex-col items-center mt-6 text-green-600">
+      <svg class="w-16 h-16 mb-2 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+      </svg>
+      <p class="text-center font-semibold">Message envoyé avec succès !</p>
+    </div>
+
+    <!-- Message d'erreur -->
+    <p id="errorMessage" class="text-center text-red-600 font-semibold mt-4 hidden">Erreur lors de l’envoi. Veuillez réessayer.</p>
+  </div>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      if (this.bot_check.value !== "") {
+        console.warn("Bot détecté !");
+        return;
+      }
+
+      emailjs.sendForm('service_gowueki', 'template_62dv73p', this)
+        .then(function () {
+          document.getElementById("contactForm").reset();
+          document.getElementById("successMessage").classList.remove("hidden");
+          document.getElementById("errorMessage").classList.add("hidden");
+        }, function (error) {
+          console.error('Erreur EmailJS :', error);
+          document.getElementById("errorMessage").classList.remove("hidden");
+          document.getElementById("successMessage").classList.add("hidden");
+        });
+    });
+  </script>
+</body>
+</body>
+    
+
+    <!-- Message de confirmation -->
+    <div id="successMessage" class="hidden flex flex-col items-center mt-6 text-green-600">
+      <svg class="w-16 h-16 mb-2 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+      </svg>
+      <p class="text-center font-semibold">Message envoyé avec succès !</p>
+    </div>
+
+    <!-- Message d'erreur -->
+    <p id="errorMessage" class="text-center text-red-600 font-semibold mt-4 hidden">Erreur lors de l’envoi. Veuillez réessayer.</p>
+  </div>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Anti-spam honeypot
+      if (this.bot_check.value !== "") {
+        console.warn("Bot détecté !");
+        return;
+      }
+
+      emailjs.sendForm('service_gowueki', 'template_62dv73p', this)
+        .then(function () {
+          document.getElementById("contactForm").reset();
+          document.getElementById("successMessage").classList.remove("hidden");
+          document.getElementById("errorMessage").classList.add("hidden");
+        }, function (error) {
+          console.error('Erreur EmailJS :', error);
+          document.getElementById("errorMessage").classList.remove("hidden");
+          document.getElementById("successMessage").classList.add("hidden");
+        });
+    });
+  </script>
+   <div class="Pagination">
+                <a href="index.html"class="active1">1</a>
+                <a href="products.html">2</a>
+                <a href="page2.html">3</a>
+                <a href="products.html"class="PREVIOUS">>>Next</a>
+      </div>
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-4">
@@ -353,7 +633,10 @@ background: #3a0ca3;
                 <div>
                     <div class="flex items-center mb-4">
                         <span class="country-flag"></span>
-                        <h3 class="text-xl text-blue-400 ml-2">My Chop<span class="text-blue-300">Online</span></h3>
+                          <a href="index.html" class="flex items-center">
+                    <img src="online.png" alt="My Chop Online Logo" class="h-10 w-auto mr-2" />
+                </a>
+                <a href="index.html" class="text-xl font-bold text-blue-700 ml-2">My Chop<span class="text-blue-400">Online</span></a>
                     </div>
                     <p class="text-gray-400">
                         La solution e-commerce adaptée au Mali. Achetez facilement via WhatsApp.
@@ -398,60 +681,56 @@ background: #3a0ca3;
         </div>
     </footer>
 
-<script>
-const btn = document.getElementById("agreeBtn");
-  const overlay = document.getElementById("alertOverlay");
-  let count = 5;
-
-  const countdown = setInterval(() => {
-    count--;
-    btn.textContent = `D'accord (${count})`;
-    if (count <= 0) {
-      clearInterval(countdown);
-      btn.textContent = "D'accord";
-      btn.disabled = false;
-      btn.classList.add("enabled");
-    }
-  }, 1000);
-
-  btn.addEventListener("click", () => {
-    if (!btn.disabled) {
-      overlay.style.display = "none";
-    }
-  });
-
-         // Filter products by category
-         document.querySelectorAll('.filter-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const feather = document.getElementById('feather');
+            const aboutSection = document.getElementById('about');
+            
+            // Initial feather position
+            let featherPosition = 20;
+            
+            // Handle scroll animation
+            function handleScroll() {
+                const scrollPosition = window.scrollY;
+                const aboutSectionTop = aboutSection.offsetTop;
+                const windowHeight = window.innerHeight;
                 
-                const category = this.dataset.category;
-                const products = document.querySelectorAll('.product-card');
-                
-                products.forEach(product => {
-                    product.style.display = (category === 'all' || product.dataset.category === category) ? 'block' : 'none';
+                // Calculate feather position based on scroll
+                if (scrollPosition < aboutSectionTop - windowHeight) {
+            ""        // Feat""her is floating"" above the about se""ction
+                    featherPosition = 20 + (scrollPosition / 10);
+                    feather.style.top = featherPosition + '%';
+                    
+                    // Random slight horizontal movement
+                    const randomX = Math.sin(scrollPosition / 100) * 10;
+                    feather.style.left = `calc(50% + ${randomX}px)`;
+                    
+                    // Remove landed class if it exists
+                    feather.classList.remove('feather-landed');
+                    feather.style.animation = 'float 3s ease-in-out infinite';
+                } else {
+                    // Feather has reached the about section
+                    feather.classList.add('feather-landed');
+                    feather.style.animation = 'none';
+                }
+            }
+            
+            // Initial call
+            handleScroll();
+            
+            // Listen to scroll events
+            window.addEventListener('scroll', handleScroll);
+            
+            // Trigger writing animation when about section is in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelector('.writing-text').style.animation = 'writing 2s steps(20) 1s forwards';
+                    }
                 });
-            });
+            }, { threshold: 0.5 });
+            
+            observer.observe(aboutSection);
         });
-
-  function dismissWarning() {
-    const warning = document.getElementById('delivery-warning');
-    if (warning) {
-      warning.style.display = 'none';
-    }
-  }
-
-  // Affiche toujours le message au chargement de la page
-  window.addEventListener('DOMContentLoaded', () => {
-    const warning = document.getElementById('delivery-warning');
-    if (warning) {
-      warning.style.display = 'flex'; // au cas où il aurait été caché
-    }
-  });
-
-  </script>        
-</body>
+    </script>
 </html>
-Footer
-© 2
