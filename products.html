@@ -1978,7 +1978,6 @@ function showErrorPopup() {
 
 function attachWhatsappProtection() {
   document.querySelectorAll('.whatsapp-btn').forEach(btn => {
-    // Pour éviter d'ajouter plusieurs fois le même listener
     if (!btn.dataset.protected) {
       btn.addEventListener('click', function(e) {
         const user = localStorage.getItem('user');
@@ -2022,7 +2021,6 @@ if (modalWhatsapp) {
     }
   });
 }
-
 // ...existing code...
 
 // ...existing code...
