@@ -413,62 +413,44 @@ button:active {
 <body class="bg-gray-50 font-sans">
     <!-- Header -->
     <header class="bg-white shadow-md sticky top-0 z-40">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <!-- Logo & Brand -->
-            <div class="flex items-center flex-shrink-0">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
                 <img src="online.png" alt="Logo My Chop Online" class="h-8 w-8 object-contain" />
-                <a href="index.html" class="text-xl font-bold text-blue-700 ml-2 whitespace-nowrap">My chop <span class="text-blue-500">Online</span></a>
+                <a href="index.html" class="text-xl font-bold text-blue-700 ml-2">My Chop<span class="text-blue-300">Online</span></a>
             </div>
-            <!-- Desktop Search Bar -->
-            <div class="hidden md:flex flex-1 justify-center">
-                <div class="flex items-center w-full max-w-md">
-                    <input id="search-input" type="text" placeholder="Rechercher un produit..." class="w-full px-4 py-2 border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-blue-400" />
-                    <button id="search-btn" class="px-4 py-2 bg-blue-600 text-white rounded-r-full hover:bg-blue-700 transition-colors">
+            <!-- Barre de recherche centrée et responsive -->
+            <div class="flex-1 flex justify-center mx-2">
+                <div class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl relative transition-all duration-200">
+                    <input
+                        type="text"
+                        id="search-bar"
+                        placeholder="Rechercher un produit (toutes langues)..."
+                        class="w-full px-3 py-1.5 rounded-full border border-gray-300 shadow focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 text-sm transition"
+                        autocomplete="off"
+                    />
+                    <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
                         <i class="fas fa-search"></i>
-                    </button>
+                    </span>
                 </div>
             </div>
-            <!-- Desktop Nav -->
-            <nav class="hidden md:flex space-x-8 ml-auto">
-                <a href="index.html" class="text-gray-700 hover:text-blue-600">Accueil</a>
-                <a href="products.html" class="products font-medium hover:text-green-600">Produits</a>
-                <a href="index.html#abbout" class="text-gray-700 hover:text-green-600">À propos</a>
-                <a href="index.html#contactForm" class="text-gray-700 hover:text-green-600">Contact</a>
-            </nav>
-            <!-- Mobile Hamburger -->
-            <button id="mobile-menu-btn" class="md:hidden ml-2 text-2xl text-gray-700 focus:outline-none">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-        <!-- Mobile Search Bar -->
-        <div class="md:hidden px-4 pb-2">
-            <div class="flex items-center w-full">
-                <input id="search-input" type="text" placeholder="Rechercher un produit..." class="w-full px-4 py-2 border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-blue-400" />
-                <button id="search-btn" class="px-4 py-2 bg-blue-600 text-white rounded-r-full hover:bg-blue-700 transition-colors">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile Menu (toggle with JS) -->
-        <div class="md:hidden hidden bg-white py-2 px-4 shadow-lg" id="mobile-menu">
-            <a href="index.html" class="block py-2 text-gray-700 hover:text-blue-600">Accueil</a>
-            <a href="products.html" class="block py-2 text-green-600 font-medium">Produits</a>
-            <a href="index.html#abbout" class="block py-2 text-gray-700 hover:text-green-600">À propos</a>
-            <a href="index.html#contactForm" class="block py-2 text-gray-700 hover:text-green-600">Contact</a>
-            <div class="border-t mt-2 pt-2"></div>
-        </div>
-        <script>
-            // Mobile menu toggle
-            document.addEventListener('DOMContentLoaded', function () {
-                const btn = document.getElementById('mobile-menu-btn');
-                const menu = document.getElementById('mobile-menu');
-                btn && btn.addEventListener('click', function () {
-                    menu.classList.toggle('hidden');
-                });
-            });
-        </script>
-    </header>
-     <script>
+            <style>
+                @media (max-width: 1024px) {
+                    header .max-w-lg { max-width: 320px !important; }
+                }
+                @media (max-width: 768px) {
+                    header .max-w-md, header .max-w-lg, header .max-w-xl { max-width: 220px !important; }
+                }
+                @media (max-width: 640px) {
+                    header .max-w-xs, header .max-w-sm, header .max-w-md, header .max-w-lg, header .max-w-xl {
+                        max-width: 140px !important;
+                    }
+                    header .flex-1.flex.justify-center.mx-2 {
+                        margin-left: 0 !important;
+                        margin-right: 0 !important;
+                    }
+                }
+            </style>
+            <script>
 document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('search-bar');
     const productsGrid = document.getElementById('products-grid');
@@ -554,61 +536,49 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 </script>
-    <header class="bg-white shadow-md sticky top-0 z-40">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <!-- Logo & Brand -->
-            <div class="flex items-center flex-shrink-0">
-                <img src="online.png" alt="Logo My Chop Online" class="h-8 w-8 object-contain" />
-                <a href="index.html" class="text-xl font-bold text-blue-700 ml-2 whitespace-nowrap">My chop <span class="text-blue-500">Online</span></a>
-            </div>
-            <!-- Desktop Search Bar -->
-            <div class="hidden md:flex flex-1 justify-center">
-                <div class="flex items-center w-full max-w-md">
-                    <input id="search-input" type="text" placeholder="Rechercher un produit..." class="w-full px-4 py-2 border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-blue-400" />
-                    <button id="search-btn" class="px-4 py-2 bg-blue-600 text-white rounded-r-full hover:bg-blue-700 transition-colors">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- Desktop Nav -->
-            <nav class="hidden md:flex space-x-8 ml-auto">
-                <a href="index.html" class="text-gray-700 hover:text-blue-600">Accueil</a>
-                <a href="products.html" class="products font-medium hover:text-green-600">Produits</a>
-                <a href="index.html#abbout" class="text-gray-700 hover:text-green-600">À propos</a>
-                <a href="index.html#contactForm" class="text-gray-700 hover:text-green-600">Contact</a>
-            </nav>
-            <!-- Mobile Hamburger -->
-            <button id="mobile-menu-btn" class="md:hidden ml-2 text-2xl text-gray-700 focus:outline-none">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-        <!-- Mobile Search Bar -->
-        <div class="md:hidden px-4 pb-2">
-            <div class="flex items-center w-full">
-                <input id="search-input" type="text" placeholder="Rechercher un produit..." class="w-full px-4 py-2 border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-blue-400" />
-                <button id="search-btn" class="px-4 py-2 bg-blue-600 text-white rounded-r-full hover:bg-blue-700 transition-colors">
-                    <i class="fas fa-search"></i>
+            <!-- Navigation Bar (Responsive) -->
+            <nav class="flex items-center space-x-8">
+                <!-- Hamburger menu for mobile -->
+                <button id="menu-toggle" class="md:hidden text-2xl text-gray-700 focus:outline-none mr-2" aria-label="Ouvrir le menu">
+                    <i class="fas fa-bars"></i>
                 </button>
+                <!-- Desktop links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-green-600">Accueil</a>
+                    <a href="products.html" class="text-green-600 font-medium">Produits</a>
+                    <a href="index.html#abbout" class="text-gray-700 hover:text-green-600">À propos</a>
+                    <a href="index.html#contactForm" class="text-gray-700 hover:text-green-600">Contact</a>
+                </div>
+            </nav>
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden bg-white py-2 px-4 shadow-lg absolute right-4 top-16 rounded z-50" id="mobile-menu">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-green-600">Accueil</a>
+                <a href="products.html" class="block py-2 text-green-600 font-medium">Produits</a>
+                <a href="index.html#abbout" class="block py-2 text-gray-700 hover:text-green-600">À propos</a>
+                <a href="index.html#contactForm" class="block py-2 text-gray-700 hover:text-green-600">Contact</a>
             </div>
-        </div>
-        <!-- Mobile Menu (toggle with JS) -->
-        <div class="md:hidden hidden bg-white py-2 px-4 shadow-lg" id="mobile-menu">
-            <a href="index.html" class="block py-2 text-gray-700 hover:text-blue-600">Accueil</a>
-            <a href="products.html" class="block py-2 text-green-600 font-medium">Produits</a>
-            <a href="index.html#abbout" class="block py-2 text-gray-700 hover:text-green-600">À propos</a>
-            <a href="index.html#contactForm" class="block py-2 text-gray-700 hover:text-green-600">Contact</a>
-            <div class="border-t mt-2 pt-2"></div>
-        </div>
-        <script>
-            // Mobile menu toggle
-            document.addEventListener('DOMContentLoaded', function () {
-                const btn = document.getElementById('mobile-menu-btn');
-                const menu = document.getElementById('mobile-menu');
-                btn && btn.addEventListener('click', function () {
-                    menu.classList.toggle('hidden');
+            <script>
+                // Mobile menu toggle
+                document.addEventListener('DOMContentLoaded', function () {
+                    const menuToggle = document.getElementById('menu-toggle');
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    menuToggle.addEventListener('click', function () {
+                        mobileMenu.classList.toggle('hidden');
+                    });
+                    // Optional: close menu on link click (mobile)
+                    mobileMenu.querySelectorAll('a').forEach(link => {
+                        link.addEventListener('click', () => {
+                            mobileMenu.classList.add('hidden');
+                        });
+                    });
+                    // Optional: close menu on outside click
+                    document.addEventListener('click', function (e) {
+                        if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    });
                 });
-            });
-        </script>
+            </script>
     </header>
 
     <!-- Products Hero -->
