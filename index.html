@@ -188,6 +188,101 @@
             background: #1d4ed8;
             transform: translateY(-2px) scale(1.04);
         }
+        /* ...existing code... */
+.popup-notfound {
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: popupFadeIn 0.4s;
+}
+.popup-notfound-content {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2.5rem 2rem 2rem 2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  text-align: center;
+  min-width: 320px;
+  max-width: 90vw;
+  position: relative;
+  animation: popupSlideIn 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+}
+@keyframes popupFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes popupSlideIn {
+  from { transform: translateY(-60px) scale(0.95); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+.cross-anim {
+  margin-bottom: 0.5rem;
+}
+.cross-anim svg {
+  width: 48px; height: 48px;
+  display: block;
+  margin: 0 auto;
+  animation: crossBounce 0.7s;
+}
+@keyframes crossBounce {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.cross-anim .circle {
+  stroke: #f87171;
+  stroke-width: 3;
+  fill: none;
+}
+.cross-anim .cross {
+  stroke: #f87171;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: crossDraw 0.6s 0.2s forwards;
+}
+@keyframes crossDraw {
+  to { stroke-dashoffset: 0; }
+}
+.popup-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #dc2626;
+}
+.popup-desc {
+  color: #444;
+  margin-bottom: 1rem;
+}
+.popup-link {
+  color: #2563eb;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+}
+.popup-close {
+  margin-top: 1rem;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.popup-close:hover {
+  background: #1d4ed8;
+}
+@media (max-width: 500px) {
+  .popup-notfound-content { padding: 1.2rem 0.5rem; min-width: 200px; }
+}
+/* ...existing code... */
 </style>
     </style>
     <header class="bg-white shadow-md sticky top-0 z-40">
@@ -279,23 +374,20 @@
         </div>
         </div>
         <!-- Popup Compte Introuvable -->
-        <div id="popup-notfound" class="popup-notfound" style="display:none;">
-        <div class="popup-notfound-content">
-            <div class="cross-anim">
-            <svg viewBox="0 0 60 60">
-            <circle class="circle" cx="30" cy="30" r="28"/>
-            <line class="cross" x1="20" y1="20" x2="40" y2="40"/>
-            <line class="cross" x1="40" y1="20" x2="20" y2="40"/>
-            </svg>
-            </div>
-            <div class="popup-title">Compte Introuvable</div>
-            <div class="popup-desc">
-            Aucun compte n'est associé à cet email.<br>
-            <a class="popup-link" id="popup-register-link">Créer un compte maintenant</a>
-            </div>
-            <button class="popup-close" id="popup-close-btn">Fermer</button>
-        </div>
-        </div>
+       <!-- Popup Compte Introuvable -->
+<div id="popup-notfound" class="popup-notfound" style="display:none;">
+  <div class="popup-notfound-content">
+    <div class="cross-anim">
+      <!-- SVG ... -->
+    </div>
+    <div class="popup-title">Compte Introuvable</div>
+    <div class="popup-desc">
+      Aucun compte n'est associé à cet email.<br>
+      <a class="popup-link" id="popup-register-link">Créer un compte maintenant</a>
+    </div>
+    <button class="popup-close" id="popup-close-btn">Fermer</button>
+  </div>
+</div>
         <!-- Connexion/S'inscrire floating button -->
         <button id="auth-float-btn">Connexion, S'inscrire</button>
         <script>
@@ -373,23 +465,20 @@
         };
 
         // Show popup compte introuvable
-        function showNotFoundPopup() {
-            popupNotfound.style.display = 'flex';
-        }
-        // Hide popup
-        function hideNotFoundPopup() {
-            popupNotfound.style.display = 'none';
-        }
-        // Register link in popup
-        popupRegisterLink.onclick = function() {
-            hideNotFoundPopup();
-            setMode('register');
-            authModal.classList.add('active');
-        };
-        // Close popup button
-        popupCloseBtn.onclick = function() {
-            hideNotFoundPopup();
-        };
+      function showNotFoundPopup() {
+    popupNotfound.style.display = 'flex';
+}
+function hideNotFoundPopup() {
+    popupNotfound.style.display = 'none';
+}
+popupRegisterLink.onclick = function() {
+    hideNotFoundPopup();
+    setMode('register');
+    authModal.classList.add('active');
+};
+popupCloseBtn.onclick = function() {
+    hideNotFoundPopup();
+};
 
         // Form submit
         authForm.onsubmit = function(e) {
