@@ -418,9 +418,9 @@ button:active {
                 <img src="online.png" alt="Logo My Chop Online" class="h-8 w-8 object-contain" />
                 <a href="index.html" class="text-xl font-bold text-blue-700 ml-2">My Chop<span class="text-blue-300">Online</span></a>
             </div>
-            <!-- Barre de recherche centrée et compacte -->
-            <div class="flex-1 flex justify-center">
-                <div class="w-full max-w-xs relative">
+            <!-- Barre de recherche centrée et responsive -->
+            <div class="flex-1 flex justify-center mx-2">
+                <div class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl relative transition-all duration-200">
                     <input
                         type="text"
                         id="search-bar"
@@ -433,6 +433,23 @@ button:active {
                     </span>
                 </div>
             </div>
+            <style>
+                @media (max-width: 1024px) {
+                    header .max-w-lg { max-width: 320px !important; }
+                }
+                @media (max-width: 768px) {
+                    header .max-w-md, header .max-w-lg, header .max-w-xl { max-width: 220px !important; }
+                }
+                @media (max-width: 640px) {
+                    header .max-w-xs, header .max-w-sm, header .max-w-md, header .max-w-lg, header .max-w-xl {
+                        max-width: 140px !important;
+                    }
+                    header .flex-1.flex.justify-center.mx-2 {
+                        margin-left: 0 !important;
+                        margin-right: 0 !important;
+                    }
+                }
+            </style>
             <script>
 document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('search-bar');
@@ -519,23 +536,49 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 </script>
-            <nav class="hidden md:flex space-x-8">
-                <a href="index.html" class="text-gray-700 hover:text-green-600">Accueil</a>
-                <a href="products.html" class="text-green-600 font-medium">Produits</a>
-                <a href="index.html#abbout" class="text-gray-700 hover:text-green-600">À propos</a>
-                <a href="index.html#contactForm" class="text-gray-700 hover:text-green-600">Contact</a>
+            <!-- Navigation Bar (Responsive) -->
+            <nav class="flex items-center space-x-8">
+                <!-- Hamburger menu for mobile -->
+                <button id="menu-toggle" class="md:hidden text-2xl text-gray-700 focus:outline-none mr-2" aria-label="Ouvrir le menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <!-- Desktop links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-green-600">Accueil</a>
+                    <a href="products.html" class="text-green-600 font-medium">Produits</a>
+                    <a href="index.html#abbout" class="text-gray-700 hover:text-green-600">À propos</a>
+                    <a href="index.html#contactForm" class="text-gray-700 hover:text-green-600">Contact</a>
+                </div>
             </nav>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div class="md:hidden hidden bg-white py-2 px-4 shadow-lg" id="mobile-menu">
-            <a href="index.html" class="block py-2 text-gray-700 hover:text-green-600">Accueil</a>
-            <a href="products.html" class="block py-2 text-green-600 font-medium">Produits</a>
-            <a href="About.html" class="block py-2 text-gray-700 hover:text-green-600">À propos</a>
-            <a href="index.html#contact" class="block py-2 text-gray-700 hover:text-green-600">Contact</a>
-            <div class="border-t mt-2 pt-2">
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden bg-white py-2 px-4 shadow-lg absolute right-4 top-16 rounded z-50" id="mobile-menu">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-green-600">Accueil</a>
+                <a href="products.html" class="block py-2 text-green-600 font-medium">Produits</a>
+                <a href="index.html#abbout" class="block py-2 text-gray-700 hover:text-green-600">À propos</a>
+                <a href="index.html#contactForm" class="block py-2 text-gray-700 hover:text-green-600">Contact</a>
             </div>
-        </div>
+            <script>
+                // Mobile menu toggle
+                document.addEventListener('DOMContentLoaded', function () {
+                    const menuToggle = document.getElementById('menu-toggle');
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    menuToggle.addEventListener('click', function () {
+                        mobileMenu.classList.toggle('hidden');
+                    });
+                    // Optional: close menu on link click (mobile)
+                    mobileMenu.querySelectorAll('a').forEach(link => {
+                        link.addEventListener('click', () => {
+                            mobileMenu.classList.add('hidden');
+                        });
+                    });
+                    // Optional: close menu on outside click
+                    document.addEventListener('click', function (e) {
+                        if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    });
+                });
+            </script>
     </header>
 
     <!-- Products Hero -->
@@ -1783,8 +1826,8 @@ class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full hover:bg-green
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center mb-4">
-                          <img src="taken/online.png" alt="Logo My Chop Online" class="h-8 w-8 object-contain" />
-                        <h3 class="text-xl font-bold ml-2">My Chop <span class="text-orange-400">Online</span></h3>
+                          <img src="online.png" alt="Logo My Chop Online" class="h-8 w-8 object-contain" />
+                        <h3 class="text-xl font-bold ml-2">My Chop <span class="text-blue-300">Online</span></h3>
                     </div>
                     <p class="text-gray-400">
                         La solution e-commerce adaptée au Mali. Achetez facilement via WhatsApp.
