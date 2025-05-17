@@ -494,18 +494,25 @@ popupCloseBtn.onclick = function() {
             }
 
             let users = JSON.parse(localStorage.getItem('users') || '{}');
-            if (mode === 'register') {
-            if (users[email]) {
-            authMessage.textContent = "Ce compte existe déjà. Veuillez vous connecter.";
-            return;
-            }
-            users[email] = { email, password, phone };
-            localStorage.setItem('users', JSON.stringify(users));
-            localStorage.setItem('user', JSON.stringify(users[email]));
-            authModal.classList.remove('active');
-            updateUserBar();
-            alert("Compte créé et connecté !");
-            } else {
+           if (mode === 'register') {
+    // Vérifie si l'email existe déjà
+    if (users[email]) {
+        authMessage.textContent = "Ce compte existe déjà. Veuillez vous connecter.";
+        return;
+    }
+    // Vérifie si le numéro de téléphone est déjà utilisé
+    const phoneExists = Object.values(users).some(u => u.phone === phone);
+    if (phoneExists) {
+        authMessage.textContent = "Ce numéro de téléphone possède déjà un compte. Veuillez vous connecter.";
+        return;
+    }
+    users[email] = { email, password, phone };
+    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('user', JSON.stringify(users[email]));
+    authModal.classList.remove('active');
+    updateUserBar();
+    alert("Compte créé et connecté !");
+} else {
             if (!users[email]) {
             // Compte introuvable: show popup animation
             authModal.classList.remove('active');
