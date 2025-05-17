@@ -345,6 +345,21 @@
         </div>
         </div>
         <!-- Modal Auth -->
+   <div id="user-bar" class="user-bar">
+        <div class="profile-btn" id="profile-btn">
+            <span class="inline-block bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg">
+            <i class="fas fa-user"></i>
+            </span>
+            <span id="user-greeting">Salut !</span>
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+            <div class="profile-dropdown" id="profile-dropdown">
+            <button id="logout-btn"><i class="fas fa-sign-out-alt mr-2"></i>Se déconnecter</button>
+            </div>
+        </div>
+        </div>
+        <!-- Modal Auth -->
         <div id="auth-modal" class="auth-modal">
         <div class="bg-white rounded-lg shadow-lg max-w-sm w-full p-6 relative auth-content">
             <button id="close-auth" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-2xl">&times;</button>
@@ -365,6 +380,9 @@
             <div id="auth-message" class="text-sm text-red-500 mb-2"></div>
             <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded font-semibold">Valider</button>
             </form>
+            <div class="mt-2 text-center">
+            <a id="forgot-password-link" class="text-blue-600 cursor-pointer hover:underline text-sm">Mot de passe oublié ?</a>
+            </div>
             <div class="mt-4 text-center">
             <span id="toggle-auth" class="text-blue-600 cursor-pointer hover:underline"></span>
             </div>
@@ -373,21 +391,69 @@
             </div>
         </div>
         </div>
+        <!-- Modal Reset Password Step 1 -->
+        <div id="reset-modal-step1" class="auth-modal">
+            <div class="bg-white rounded-lg shadow-lg max-w-sm w-full p-6 relative auth-content">
+            <button id="close-reset1" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold mb-4 text-center">Réinitialiser le mot de passe</h2>
+            <form id="reset-form-step1" autocomplete="off">
+                <div class="mb-3">
+                <label class="block text-gray-700 mb-1" for="reset-email">Votre email</label>
+                <input type="email" id="reset-email" class="w-full border rounded px-3 py-2" required>
+                </div>
+                <div id="reset-message-step1" class="text-sm text-red-500 mb-2"></div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded font-semibold">Recevoir un code</button>
+            </form>
+            </div>
+        </div>
+        <!-- Modal Reset Password Step 2 -->
+        <div id="reset-modal-step2" class="auth-modal">
+            <div class="bg-white rounded-lg shadow-lg max-w-sm w-full p-6 relative auth-content">
+            <button id="close-reset2" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold mb-4 text-center">Vérification du code</h2>
+            <form id="reset-form-step2" autocomplete="off">
+                <div class="mb-3">
+                <label class="block text-gray-700 mb-1" for="reset-code">Code reçu par email</label>
+                <input type="text" id="reset-code" class="w-full border rounded px-3 py-2" required>
+                </div>
+                <div id="reset-message-step2" class="text-sm text-red-500 mb-2"></div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded font-semibold">Valider le code</button>
+            </form>
+            </div>
+        </div>
+        <!-- Modal Reset Password Step 3 -->
+        <div id="reset-modal-step3" class="auth-modal">
+            <div class="bg-white rounded-lg shadow-lg max-w-sm w-full p-6 relative auth-content">
+            <button id="close-reset3" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold mb-4 text-center">Nouveau mot de passe</h2>
+            <form id="reset-form-step3" autocomplete="off">
+                <div class="mb-3">
+                <label class="block text-gray-700 mb-1" for="reset-new-password">Nouveau mot de passe</label>
+                <input type="password" id="reset-new-password" class="w-full border rounded px-3 py-2" required>
+                </div>
+                <div id="reset-message-step3" class="text-sm text-red-500 mb-2"></div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded font-semibold">Changer le mot de passe</button>
+            </form>
+            </div>
+        </div>
         <!-- Popup Compte Introuvable -->
-       <!-- Popup Compte Introuvable -->
-<div id="popup-notfound" class="popup-notfound" style="display:none;">
-  <div class="popup-notfound-content">
-    <div class="cross-anim">
-      <!-- SVG ... -->
-    </div>
-    <div class="popup-title">Compte Introuvable</div>
-    <div class="popup-desc">
-      Aucun compte n'est associé à cet email.<br>
-      <a class="popup-link" id="popup-register-link">Créer un compte maintenant</a>
-    </div>
-    <button class="popup-close" id="popup-close-btn">Fermer</button>
-  </div>
-</div>
+        <div id="popup-notfound" class="popup-notfound" style="display:none;">
+        <div class="popup-notfound-content">
+            <div class="cross-anim">
+            <svg viewBox="0 0 60 60">
+            <circle class="circle" cx="30" cy="30" r="28"/>
+            <line class="cross" x1="20" y1="20" x2="40" y2="40"/>
+            <line class="cross" x1="40" y1="20" x2="20" y2="40"/>
+            </svg>
+            </div>
+            <div class="popup-title">Compte Introuvable</div>
+            <div class="popup-desc">
+            Aucun compte n'est associé à cet email.<br>
+            <a class="popup-link" id="popup-register-link">Créer un compte maintenant</a>
+            </div>
+            <button class="popup-close" id="popup-close-btn">Fermer</button>
+        </div>
+        </div>
         <!-- Connexion/S'inscrire floating button -->
         <button id="auth-float-btn">Connexion, S'inscrire</button>
         <script>
@@ -410,6 +476,24 @@
         const popupCloseBtn = document.getElementById('popup-close-btn');
         // Floating button
         const authFloatBtn = document.getElementById('auth-float-btn');
+        // Reset password modals
+        const forgotPasswordLink = document.getElementById('forgot-password-link');
+        const resetModalStep1 = document.getElementById('reset-modal-step1');
+        const resetModalStep2 = document.getElementById('reset-modal-step2');
+        const resetModalStep3 = document.getElementById('reset-modal-step3');
+        const closeReset1 = document.getElementById('close-reset1');
+        const closeReset2 = document.getElementById('close-reset2');
+        const closeReset3 = document.getElementById('close-reset3');
+        const resetFormStep1 = document.getElementById('reset-form-step1');
+        const resetFormStep2 = document.getElementById('reset-form-step2');
+        const resetFormStep3 = document.getElementById('reset-form-step3');
+        const resetMessageStep1 = document.getElementById('reset-message-step1');
+        const resetMessageStep2 = document.getElementById('reset-message-step2');
+        const resetMessageStep3 = document.getElementById('reset-message-step3');
+        // State for reset
+        let resetEmail = '';
+        let resetCode = '';
+
         let mode = 'register'; // or 'login'
 
         // Helper: get username from email (before @)
@@ -465,70 +549,74 @@
         };
 
         // Show popup compte introuvable
-      function showNotFoundPopup() {
-    popupNotfound.style.display = 'flex';
-}
-function hideNotFoundPopup() {
-    popupNotfound.style.display = 'none';
-}
-popupRegisterLink.onclick = function() {
-    hideNotFoundPopup();
-    setMode('register');
-    authModal.classList.add('active');
-};
-popupCloseBtn.onclick = function() {
-    hideNotFoundPopup();
-};
+        function showNotFoundPopup() {
+            popupNotfound.style.display = 'flex';
+        }
+        // Hide popup
+        function hideNotFoundPopup() {
+            popupNotfound.style.display = 'none';
+        }
+        // Register link in popup
+        popupRegisterLink.onclick = function() {
+            hideNotFoundPopup();
+            setMode('register');
+            authModal.classList.add('active');
+        };
+        // Close popup button
+        popupCloseBtn.onclick = function() {
+            hideNotFoundPopup();
+        };
 
-        // Form submit
-        authForm.onsubmit = function(e) {
-            e.preventDefault();
-            const email = document.getElementById('auth-email').value.trim().toLowerCase();
-            const password = document.getElementById('auth-password').value;
-            const phone = document.getElementById('auth-phone').value.trim();
+       // ...dans ton <script>...
+    authForm.onsubmit = function(e) {
+        e.preventDefault();
+        const email = document.getElementById('auth-email').value.trim().toLowerCase();
+        const password = document.getElementById('auth-password').value;
+        const phone = document.getElementById('auth-phone').value.trim();
 
-            // Validate phone (Mali)
-            if (!/^(\+223|00223|223)?[67][0-9]{7}$/.test(phone)) {
-            authMessage.textContent = "Numéro malien invalide (ex: 76xxxxxx)";
+        // Valide le numéro malien
+        if (!/^(\+223|00223|223)?[67][0-9]{7}$/.test(phone)) {
+        authMessage.textContent = "Numéro malien invalide (ex: 76xxxxxx)";
+        return;
+        }
+
+        let users = JSON.parse(localStorage.getItem('users') || '{}');
+
+        if (mode === 'register') {
+        // Vérifie si l'email existe déjà
+        if (users[email]) {
+            authMessage.textContent = "Ce compte existe déjà. Veuillez vous connecter.";
             return;
-            }
-
-            let users = JSON.parse(localStorage.getItem('users') || '{}');
-           if (mode === 'register') {
-    // Vérifie si l'email existe déjà
-    if (users[email]) {
-        authMessage.textContent = "Ce compte existe déjà. Veuillez vous connecter.";
-        return;
-    }
-    // Vérifie si le numéro de téléphone est déjà utilisé
-    const phoneExists = Object.values(users).some(u => u.phone === phone);
-    if (phoneExists) {
-        authMessage.textContent = "Ce numéro de téléphone possède déjà un compte. Veuillez vous connecter.";
-        return;
-    }
-    users[email] = { email, password, phone };
-    localStorage.setItem('users', JSON.stringify(users));
-    localStorage.setItem('user', JSON.stringify(users[email]));
-    authModal.classList.remove('active');
-    updateUserBar();
-    alert("Compte créé et connecté !");
-} else {
-            if (!users[email]) {
-            // Compte introuvable: show popup animation
+        }
+        // Vérifie si le numéro de téléphone est déjà utilisé
+        const phoneExists = Object.values(users).some(u => u.phone === phone);
+        if (phoneExists) {
+            authMessage.textContent = "Ce numéro de téléphone possède déjà un compte. Veuillez vous connecter.";
+            return;
+        }
+        users[email] = { email, password, phone };
+        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('user', JSON.stringify(users[email]));
+        authModal.classList.remove('active');
+        updateUserBar();
+        alert("Compte créé et connecté !");
+        } else {
+        // Connexion
+        if (!users[email]) {
             authModal.classList.remove('active');
             showNotFoundPopup();
             return;
-            }
-            if (users[email].password !== password) {
+        }
+        if (users[email].password !== password) {
             authMessage.textContent = "Mot de passe incorrect.";
             return;
-            }
-            localStorage.setItem('user', JSON.stringify(users[email]));
-            authModal.classList.remove('active');
-            updateUserBar();
-            alert("Connecté !");
-            }
-        };
+        }
+        localStorage.setItem('user', JSON.stringify(users[email]));
+        authModal.classList.remove('active');
+        updateUserBar();
+        alert("Connecté !");
+        }
+    };
 
         // Show modal on load if not logged in
         window.addEventListener('DOMContentLoaded', showAuthModal);
@@ -568,8 +656,90 @@ popupCloseBtn.onclick = function() {
 
         // On page load, show user bar if logged in
         updateUserBar();
+
+        // -------------------------
+        // Mot de passe oublié
+        // -------------------------
+        function closeAllResetModals() {
+            resetModalStep1.classList.remove('active');
+            resetModalStep2.classList.remove('active');
+            resetModalStep3.classList.remove('active');
+        }
+        // Ouvre la modale "mot de passe oublié"
+        forgotPasswordLink.onclick = function() {
+            closeAllResetModals();
+            resetModalStep1.classList.add('active');
+            authModal.classList.remove('active');
+            resetFormStep1.reset();
+            resetMessageStep1.textContent = '';
+        };
+        // Fermer chaque étape
+        closeReset1.onclick = function() { resetModalStep1.classList.remove('active'); };
+        closeReset2.onclick = function() { resetModalStep2.classList.remove('active'); };
+        closeReset3.onclick = function() { resetModalStep3.classList.remove('active'); };
+
+        // Génère un code random (6 chiffres/lettres)
+        function generateRandomCode() {
+            return Math.random().toString(36).slice(-8);
+        }
+        // Simule l'envoi d'email (affiche le code à l'utilisateur)
+        function sendResetCodeToEmail(email, code) {
+            // En prod, ici tu appellerais un backend pour envoyer le mail
+            alert("Un code de réinitialisation a été envoyé à votre email : " + email + "\n\nCode (démo): " + code);
+        }
+
+        // Etape 1 : Demande email
+        resetFormStep1.onsubmit = function(e) {
+            e.preventDefault();
+            const email = document.getElementById('reset-email').value.trim().toLowerCase();
+            let users = JSON.parse(localStorage.getItem('users') || '{}');
+            if (!users[email]) {
+            resetMessageStep1.textContent = "Aucun compte trouvé avec cet email.";
+            return;
+            }
+            resetEmail = email;
+            resetCode = generateRandomCode();
+            // Stocke le code temporairement (localStorage pour la démo)
+            localStorage.setItem('resetCode_' + resetEmail, resetCode);
+            sendResetCodeToEmail(resetEmail, resetCode);
+            resetModalStep1.classList.remove('active');
+            resetModalStep2.classList.add('active');
+            resetFormStep2.reset();
+            resetMessageStep2.textContent = '';
+        };
+        // Etape 2 : Vérifie le code
+        resetFormStep2.onsubmit = function(e) {
+            e.preventDefault();
+            const code = document.getElementById('reset-code').value.trim();
+            const storedCode = localStorage.getItem('resetCode_' + resetEmail);
+            if (code !== storedCode) {
+            resetMessageStep2.textContent = "Code incorrect.";
+            return;
+            }
+            resetModalStep2.classList.remove('active');
+            resetModalStep3.classList.add('active');
+            resetFormStep3.reset();
+            resetMessageStep3.textContent = '';
+        };
+        // Etape 3 : Nouveau mot de passe
+        resetFormStep3.onsubmit = function(e) {
+            e.preventDefault();
+            const newPassword = document.getElementById('reset-new-password').value;
+            let users = JSON.parse(localStorage.getItem('users') || '{}');
+            if (!users[resetEmail]) {
+            resetMessageStep3.textContent = "Erreur interne.";
+            return;
+            }
+            users[resetEmail].password = newPassword;
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.removeItem('resetCode_' + resetEmail);
+            resetModalStep3.classList.remove('active');
+            alert("Mot de passe modifié. Vous pouvez vous connecter.");
+            setMode('login');
+            authModal.classList.add('active');
+        };
         })();
-        </script> 
+        </script>
 </head>
 <section class="bg-gradient-to-r from-green-600 to-blue-800 py-12 text-white">
         <div class="container mx-auto px-4 text-center" id="about">
