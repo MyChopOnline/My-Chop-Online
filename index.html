@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACCEUIL | My Chop Online</title>
+    <title>ACCEUIL | Groupe M-A Schop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="4.css">
@@ -743,7 +743,7 @@
 </head>
 <section class="bg-gradient-to-r from-green-600 to-blue-800 py-12 text-white">
         <div class="container mx-auto px-4 text-center" id="about">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">“Bienvenue sur Chop Online – Vos produits préférés, 100% Mali</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">“Bienvenue sur Groupe M-A Shop– Vos produits préférés, 100% Mali</h1>
             <h2>“Livraison partout au Mali</h2>
             <h2 class="text-2xl md:text-3xl font-semibold mb-6">Commandez facilement via WhatsApp</h2>           
         </div>
@@ -786,81 +786,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Loader Exemple</title>
-  <style>
-    /* Style de fond de la page (requis car le texte du loader est transparent) */
-    body {
-      background-color: white;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Conteneur du loader en plein écran */
-    #loader-wrapper {
-      position: fixed;
-      inset: 0;
-      background: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
-    }
-
-    #loader-wrapper.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    /* TON CSS EXISTANT POUR LE LOADER (extrait simplifié ici) */
-    .loader {
-      display: flex;
-      gap: 0.3rem;
-    }
-
-    .loader span {
-      animation: hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1);
-      transform: translateY(4rem);
-    }
-
-    .loader .l { animation-delay: 0s; }
-    .loader .o { animation-delay: 0.07s; }
-    .loader .a { animation-delay: 0.14s; }
-    .loader .d { animation-delay: 0.21s; }
-    .loader .ispan { animation-delay: 0.28s; }
-    .loader .n { animation-delay: 0.35s; }
-    .loader .g { animation-delay: 0.42s; }
-
-    @keyframes hideAndSeek {
-      0% { transform: translateY(4rem); }
-      100% { transform: translateY(0rem); }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Conteneur du loader -->
-  <div id="loader-wrapper">
-    <div class="loader">
-      <span class="l">L</span>
-      <span class="o">O</span>
-      <span class="a">A</span>
-      <span class="d">D</span>
-      <span class="ispan">I</span>
-      <span class="n">N</span>
-      <span class="g">G</span>
-    </div>
-  </div>
-
-  <!-- Ton contenu principal -->
-  <!-- JavaScript pour cacher le loader après 3 secondes -->
-  <script>
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("loader-wrapper").classList.add("hidden");
-      }, 3000);
-    });
-  </script>
+ 
 
 </body>
 </html>
